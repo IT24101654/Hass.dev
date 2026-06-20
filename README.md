@@ -76,6 +76,42 @@ This is the personal portfolio of **Yasith Hasarinda (Hass Dev)**, designed to h
 
 ---
 
+## 🚀 Getting Started
+
+### Step 1 — Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/portfolio.git
+cd portfolio
+```
+
+### Step 2 — Install Dependencies
+
+```bash
+npm install
+```
+
+### Step 3 — Run the Development Server
+
+```bash
+npm run dev
+```
+
+Open your browser and visit:
+http://localhost:5173/
+
+---
+
+## 📊 Future Enhancements
+
+- 📝 Integration of a dynamic blog section
+- 🌙 Advanced Light/Dark mode toggle
+- 🌐 Multi-language support
+- 📊 Dashboard to track profile visits and analytics
+- 📱 Enhanced mobile AR experiences
+
+---
+
 ## 📬 Contact
 
 **Developer:** Yasith Hasarinda (Hass Dev)
