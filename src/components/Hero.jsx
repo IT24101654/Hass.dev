@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Spline from '@splinetool/react-spline';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Hero = () => {
     const { scrollY } = useScroll();
 
-    const scale = useTransform(scrollY, [0, 900], [1.0, 4.0]);
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const isMobile = windowWidth < 768;
+    const isTablet = windowWidth >= 768 && windowWidth <= 1024;
+
+    const initialScale = isMobile ? 0.4 : isTablet ? 0.6 : 0.8;
+    const finalScale = isMobile ? 1.5 : isTablet ? 2.5 : 3.5;
+
+    const scale = useTransform(scrollY, [0, 900], [initialScale, finalScale]);
 
     const y = useTransform(scrollY, [0, 900], [0, -250]);
 
@@ -14,12 +28,12 @@ const Hero = () => {
 
             <motion.div
                 style={{ scale, y }}
-                className="absolute inset-0 z-0 pointer-events-auto md:translate-x-1/4 origin-center"
+                className="absolute top-[-20vh] md:top-[-25%] left-1/2 md:left-[0%] lg:left-[0%] -translate-x-1/2 md:translate-x-0 w-[300vw] md:w-[150%] h-[300vw] md:h-[150%] z-0 pointer-events-auto origin-center ml-[20vw] md:ml-0"
             >
                 <Spline scene="https://prod.spline.design/1exYaNclVVLtii4g/scene.splinecode" />
             </motion.div>
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start justify-center pointer-events-none mt-20">
+            <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start justify-end pb-32 md:justify-center md:pb-0 pointer-events-none">
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -33,8 +47,17 @@ const Hero = () => {
                     <h3 className="text-2xl md:text-4xl font-semibold text-gray-300 mb-6 drop-shadow-md">
                         I'm a <span className="text-gradient">Full Stack Developer</span>
                     </h3>
+                    <p className="text-lg text-gray-400 mb-3 max-w-lg drop-shadow-md">
+                        BSc (Hons) IT Undergraduate
+                    </p>
+                    <p className="text-lg text-gray-400 mb-3 max-w-lg drop-shadow-md">
+                        Java Developer
+                    </p>
+                    <p className="text-lg text-gray-400 mb-3 max-w-lg drop-shadow-md">
+                        Spring Boot Enthusiast
+                    </p>
                     <p className="text-lg text-gray-400 mb-8 max-w-lg drop-shadow-md">
-                        BSc (Hons) IT Undergraduate | Java Developer | Spring Boot Enthusiast | AI Explorer
+                        AI Explorer
                     </p>
                     <div className="flex gap-4 pointer-events-auto">
                         <a href="#contact" className="px-8 py-3 bg-[#ff2a2a] hover:bg-red-600 text-white rounded-full font-medium transition-all shadow-[0_0_20px_rgba(255,42,42,0.4)] hover:shadow-[0_0_30px_rgba(255,42,42,0.6)]">

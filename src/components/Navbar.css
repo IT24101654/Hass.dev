@@ -4,12 +4,21 @@
     align-items: center;
     padding: 30px 60px;
     background-color: transparent;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
     font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 15px 60px;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .logo {
@@ -44,7 +53,11 @@
 
 @media (max-width: 768px) {
     .navbar {
-        padding: 20px;
+        padding: 20px 20px;
+    }
+
+    .navbar.scrolled {
+        padding: 15px 20px;
     }
 
     .nav-links {
