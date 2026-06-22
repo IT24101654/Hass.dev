@@ -38,7 +38,7 @@ const Hero = ({ isLoading }) => {
                 >
                     <Spline
                         scene="https://prod.spline.design/1exYaNclVVLtii4g/scene.splinecode"
-                        className="drop-shadow-[5px_5px_2px_rgba(255,42,42,0.1)]"
+                        className="drop-shadow-[1px_1px_1px_rgba(255,42,42,0.1)]"
                     />
                 </motion.div>
             </motion.div>
