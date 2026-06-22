@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Spline from '@splinetool/react-spline';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-const Hero = () => {
+const Hero = ({ isLoading }) => {
     const { scrollY } = useScroll();
 
     const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
@@ -16,8 +16,8 @@ const Hero = () => {
     const isMobile = windowWidth < 768;
     const isTablet = windowWidth >= 768 && windowWidth <= 1024;
 
-    const initialScale = isMobile ? 0.4 : isTablet ? 0.6 : 0.8;
-    const finalScale = isMobile ? 1.5 : isTablet ? 2.5 : 3.5;
+    const initialScale = isMobile ? 1.2 : isTablet ? 0.8 : 1.5;
+    const finalScale = isMobile ? 1.5 : isTablet ? 1.8 : 4.5;
 
     const scale = useTransform(scrollY, [0, 900], [initialScale, finalScale]);
 
@@ -28,9 +28,19 @@ const Hero = () => {
 
             <motion.div
                 style={{ scale, y }}
-                className="absolute top-[-20vh] md:top-[-25%] left-1/2 md:left-[0%] lg:left-[0%] -translate-x-1/2 md:translate-x-0 w-[300vw] md:w-[150%] h-[300vw] md:h-[150%] z-0 pointer-events-auto origin-center ml-[20vw] md:ml-0"
+                className="absolute top-[-45vh] md:top-[-90vh] xl:top-[-55%] left-1/2 xl:left-[0%] -translate-x-1/2 xl:translate-x-0 w-[300vw] xl:w-[150%] h-[300vw] xl:h-[150%] z-0 pointer-events-auto origin-center ml-[50vw] md:ml-[25vw] xl:ml-0"
             >
-                <Spline scene="https://prod.spline.design/1exYaNclVVLtii4g/scene.splinecode" />
+                <motion.div
+                    initial={{ scale: 1.8, opacity: 0 }}
+                    animate={isLoading ? { scale: 1.8, opacity: 0 } : { scale: 1, opacity: 1 }}
+                    transition={{ duration: 2.5, ease: "easeOut" }}
+                    className="w-full h-full"
+                >
+                    <Spline
+                        scene="https://prod.spline.design/1exYaNclVVLtii4g/scene.splinecode"
+                        className="drop-shadow-[5px_5px_2px_rgba(255,42,42,0.1)]"
+                    />
+                </motion.div>
             </motion.div>
 
             <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start justify-end pb-32 md:justify-center md:pb-0 pointer-events-none">
