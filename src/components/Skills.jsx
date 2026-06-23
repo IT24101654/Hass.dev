@@ -151,9 +151,8 @@ const Skills = () => {
                 }
                 .sk-inner {
                     width: 100%;
-                    max-width: 1100px;
                     margin: 0 auto;
-                    padding: 0 2rem;
+                    padding: 0 13rem 0 13rem;
                     box-sizing: border-box;
                 }
 
