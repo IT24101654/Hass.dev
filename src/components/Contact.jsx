@@ -32,8 +32,8 @@ const Contact = () => {
   };
 
   const infoItems = [
-    { icon: <FiMail size={18} />, text: 'yasith.hasarinda2003@gmail.com', href: 'mailto:yasith.hasarinda2003@gmail.com' },
-    { icon: <FiMapPin size={18} />, text: 'Ampara, Sri Lanka', href: null },
+    { icon: <FiMail size={22} />, text: 'yasith.hasarinda2003@gmail.com', href: 'mailto:yasith.hasarinda2003@gmail.com' },
+    { icon: <FiMapPin size={22} />, text: 'Ampara, Sri Lanka', href: null },
   ];
 
   return (
@@ -41,9 +41,9 @@ const Contact = () => {
       <style>{`
                 .ct-inner {
                     width: 100%;
-                    max-width: 1100px;
+                    max-width: 1350px;
                     margin: 0 auto;
-                    padding: 0 2rem;
+                    padding: 0 4rem;
                     box-sizing: border-box;
                 }
                 .ct-grid {
@@ -58,27 +58,27 @@ const Contact = () => {
                     background: rgba(255,255,255,0.03);
                     border: 1px solid rgba(255,255,255,0.08);
                     border-radius: 24px;
-                    padding: 2.2rem;
+                    padding: 2.8rem;
                     backdrop-filter: blur(16px);
                     -webkit-backdrop-filter: blur(16px);
                 }
                 .ct-label {
                     display: block;
                     color: rgba(255,255,255,0.45);
-                    font-size: 0.7rem;
+                    font-size: 0.85rem;
                     font-weight: 700;
                     letter-spacing: 0.1em;
                     text-transform: uppercase;
-                    margin-bottom: 0.4rem;
+                    margin-bottom: 0.5rem;
                 }
                 .ct-input {
                     width: 100%;
                     background: rgba(255,255,255,0.04);
                     border: 1px solid rgba(255,255,255,0.09);
                     border-radius: 12px;
-                    padding: 0.75rem 1rem;
+                    padding: 0.85rem 1.1rem;
                     color: #fff;
-                    font-size: 0.9rem;
+                    font-size: 1.05rem;
                     font-family: 'Inter', sans-serif;
                     outline: none;
                     transition: border-color 0.2s, box-shadow 0.2s;
@@ -89,16 +89,16 @@ const Contact = () => {
                     box-shadow: 0 0 0 3px rgba(255,42,42,0.08);
                 }
                 .ct-input::placeholder { color: rgba(255,255,255,0.18); }
-                textarea.ct-input { resize: vertical; min-height: 120px; }
+                textarea.ct-input { resize: vertical; min-height: 140px; }
                 .ct-btn {
                     width: 100%;
                     background: #ff2a2a;
                     color: #fff;
                     font-weight: 700;
-                    font-size: 0.9rem;
+                    font-size: 1.05rem;
                     border: none;
                     border-radius: 12px;
-                    padding: 0.85rem;
+                    padding: 1rem;
                     cursor: pointer;
                     letter-spacing: 0.03em;
                     transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
@@ -109,18 +109,18 @@ const Contact = () => {
                 .ct-info-row {
                     display: flex;
                     align-items: center;
-                    gap: 0.75rem;
+                    gap: 1rem;
                     color: rgba(255,255,255,0.55);
-                    font-size: 0.85rem;
+                    font-size: 1.05rem;
                     text-decoration: none;
                     transition: color 0.2s;
-                    margin-bottom: 1rem;
+                    margin-bottom: 1.2rem;
                 }
                 .ct-info-row:hover { color: #ff2a2a; }
                 .ct-icon-wrap {
-                    width: 36px;
-                    height: 36px;
-                    border-radius: 10px;
+                    width: 44px;
+                    height: 44px;
+                    border-radius: 12px;
                     background: rgba(255,42,42,0.08);
                     border: 1px solid rgba(255,42,42,0.15);
                     display: flex;
@@ -130,8 +130,8 @@ const Contact = () => {
                     flex-shrink: 0;
                 }
                 .ct-social-btn {
-                    width: 40px;
-                    height: 40px;
+                    width: 48px;
+                    height: 48px;
                     border-radius: 50%;
                     background: rgba(255,255,255,0.04);
                     border: 1px solid rgba(255,255,255,0.09);
@@ -166,8 +166,8 @@ const Contact = () => {
             className="ct-glass flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-white font-bold text-xl mb-2 border-l-4 border-[#ff2a2a] pl-3">Get in Touch</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              <h3 className="text-white font-bold text-2xl mb-3 border-l-4 border-[#ff2a2a] pl-3">Get in Touch</h3>
+              <p className="text-gray-400 text-base leading-relaxed mb-8">
                 I'm open to new opportunities and collaborations. Have a project, question, or just want to say hi? I'll get back to you as soon as possible.
               </p>
 
@@ -187,25 +187,25 @@ const Contact = () => {
             </div>
 
             <div>
-              <p className="text-gray-500 text-xs uppercase tracking-widest mb-3 font-semibold">Social</p>
-              <div className="flex flex-wrap gap-3">
+              <p className="text-gray-500 text-sm uppercase tracking-widest mb-4 font-semibold">Social</p>
+              <div className="flex flex-wrap gap-4">
                 <a href="https://github.com/IT24101654" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="GitHub">
-                  <FaGithub size={18} />
+                  <FaGithub size={22} />
                 </a>
                 <a href="https://www.linkedin.com/in/yasithhasarinda" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="LinkedIn">
-                  <FaLinkedin size={18} />
+                  <FaLinkedin size={22} />
                 </a>
                 <a href="https://www.facebook.com/yasith.lathika" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Facebook">
-                  <FaFacebook size={18} />
+                  <FaFacebook size={22} />
                 </a>
                 <a href="https://www.instagram.com/hasa_rinda" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Instagram">
-                  <FaInstagram size={18} />
+                  <FaInstagram size={22} />
                 </a>
                 <a href="https://www.tiktok.com/@hase_24" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="TikTok">
-                  <FaTiktok size={18} />
+                  <FaTiktok size={22} />
                 </a>
                 <a href="https://wa.me/94779114877" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="WhatsApp">
-                  <FaWhatsapp size={18} />
+                  <FaWhatsapp size={22} />
                 </a>
               </div>
             </div>
