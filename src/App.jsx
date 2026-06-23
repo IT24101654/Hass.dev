@@ -5,6 +5,8 @@ import About from './components/About';
 import Loader from './components/Loader';
 import { AnimatePresence } from 'framer-motion';
 import Projects from './components/Projects';
+import Skills from './components/Skills';
+import Contact from './components/Contact';
 import gradientImg from './assets/gradient.png';
 
 function App() {
@@ -47,16 +49,23 @@ function App() {
         </div>
 
         {/* Section 2 – About */}
-        <div
-          style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
-        >
+        <div style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <About />
         </div>
 
         {/* Section 3 – Projects */}
         <div style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <Projects />
+        </div>
+
+        {/* Section 4 – Skills */}
+        <div style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+          <Skills />
+        </div>
+
+        {/* Section 5 – Contact */}
+        <div style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+          <Contact />
         </div>
       </div>
     </>

@@ -50,7 +50,7 @@ const Hero = ({ isLoading }) => {
                     transition={{ duration: 1, delay: 0.2 }}
                     className="max-w-2xl"
                 >
-                    <h2 className="text-xl md:text-2xl text-[#ff2a2a] font-mono mb-2">Hi, I'm</h2>
+                    <h2 className="text-xl md:text-2xl text-[#ff2a2a] font-mono mb-2">Hi, It's</h2>
                     <h1 className="text-5xl md:text-7xl font-bold font-sans text-white mb-4 tracking-tight drop-shadow-lg">
                         Hass Dev
                     </h1>
