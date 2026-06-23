@@ -72,27 +72,34 @@ html.lenis {
 
 /* ─── 3D Carousel Custom CSS ─── */
 .slider {
-    --radius: 650px;
+  --radius: 500px;
 }
 
 @media (max-width: 768px) {
-    .slider {
-        --radius: 350px;
-    }
+  .slider {
+    --radius: 220px;
+  }
 }
 
 .slider .item {
-    transform:
-        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-        translateZ(var(--radius));
+  transform:
+    rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(var(--radius));
 }
 
 @keyframes shimmer {
-    0%   { left: -75%; }
-    40%  { left: 125%; }
-    100% { left: 125%; }
+  0% {
+    left: -75%;
+  }
+
+  40% {
+    left: 125%;
+  }
+
+  100% {
+    left: 125%;
+  }
 }
 
 .animate-shimmer {
-    animation: shimmer 4s ease-in-out infinite;
+  animation: shimmer 4s ease-in-out infinite;
 }

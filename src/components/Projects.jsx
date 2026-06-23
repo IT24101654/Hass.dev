@@ -5,12 +5,20 @@ import parkifyImageP from '../assets/Parkify Website-popup.png';
 import parkifyImageC from '../assets/Parkify Website-card.png';
 import JARVISImageP from '../assets/JARVIS.png';
 import JARVISImageC from '../assets/JARVIS-card.jpg';
+import parkifyWImageC from '../assets/Parkify Mobile App-card.png';
+import parkifyWImageP from '../assets/Parkify Mobile App-popup.png';
+import LivingArtImageC from '../assets/Living Art Gallery-card.png';
+import LivingArtImageP from '../assets/Living Art Gallery-popup.png';
+import NeoSchoolImageC from '../assets/NeoSchool-card.png';
+import NeoSchoolImageP from '../assets/NeoSchool-popup.jpeg';
+import EcoLeafImageC from '../assets/EcoLeaf-card.png';
+import EcoLeafImageP from '../assets/EcoLeaf-popup.png';
 
 
 
 const PROJECTS = [
     {
-        id: 7,
+        id: 1,
         title: 'Hass.dev Portfolio',
         description: 'Personal portfolio website showcasing projects, technical skills, and journey. Built with React and 3D elements.',
         cardImage: hassDevImageC,
@@ -23,7 +31,7 @@ const PROJECTS = [
         live: null,
     },
     {
-        id: 1,
+        id: 2,
         title: 'Parkify Website',
         description: 'Smart Parking Management System helping drivers find and book parking via Google Maps, with owner dashboards and admin controls.',
         cardImage: parkifyImageC,
@@ -36,18 +44,20 @@ const PROJECTS = [
         live: 'https://parkify-frontend.onrender.com',
     },
     {
-        id: 8,
+        id: 3,
         title: 'Parkify Mobile App',
         description: 'Mobile application for parking discovery. Features a React Native Expo frontend and a secure Node.js/MongoDB backend API.',
-        cardImage: null,
-        popupImage: null,
+        cardImage: parkifyWImageC,
+        popupImage: parkifyWImageP,
+        imagePosition: '36% 45%',
+        imageSize: '115%',
         gradient: 'from-[#ef4444] to-[#f97316]',
         tech: ['React Native', 'Expo', 'Node.js', 'MongoDB'],
         github: 'https://github.com/IT24101654/Parkify-Frontend',
         live: null,
     },
     {
-        id: 2,
+        id: 4,
         title: 'J.A.R.V.I.S Assistant',
         description: 'AI-powered desktop assistant inspired by Iron Man, featuring voice commands, web search, and intelligent task execution.',
         cardImage: JARVISImageC,
@@ -60,49 +70,44 @@ const PROJECTS = [
         live: null,
     },
     {
-        id: 3,
+        id: 5,
         title: 'Living Art Gallery',
         description: 'High-quality hand-drawn pencil portrait gallery showcasing facial details, shading, and real emotions.',
-        cardImage: null,
-        popupImage: null,
+        cardImage: LivingArtImageC,
+        popupImage: LivingArtImageP,
+        imagePosition: '15% 60%',
+        imageSize: '320%',
         gradient: 'from-[#10b981] to-[#059669]',
         tech: ['HTML', 'CSS', 'JavaScript'],
         github: 'https://github.com/IT24101654/Living-Art-by-Hasarinda',
         live: null,
     },
     {
-        id: 4,
+        id: 6,
         title: 'NeoSchool',
         description: 'Web-based School Information Management System for handling student data, courses, and administrative workflows.',
-        cardImage: null,
-        popupImage: null,
+        cardImage: NeoSchoolImageC,
+        popupImage: NeoSchoolImageP,
+        imagePosition: '0% 0%',
+        imageSize: '120%',
         gradient: 'from-[#f59e0b] to-[#ef4444]',
         tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
         github: 'https://github.com/IT24101654/NeoSchool',
         live: null,
     },
     {
-        id: 5,
+        id: 7,
         title: 'EcoLeaf AI/ML',
         description: 'Machine Learning project using Jupyter Notebooks to detect plant diseases from leaf images with high accuracy.',
-        cardImage: null,
-        popupImage: null,
+        cardImage: EcoLeafImageC,
+        popupImage: EcoLeafImageP,
+        imagePosition: '50% 80%',
+        imageSize: '150%',
         gradient: 'from-[#84cc16] to-[#16a34a]',
         tech: ['Python', 'Machine Learning', 'Jupyter'],
         github: 'https://github.com/IT24101654/EcoLeaf-AIML',
         live: null,
-    },
-    {
-        id: 6,
-        title: 'SkillDrive',
-        description: 'A platform designed to streamline skills learning and driver education with intuitive resource management.',
-        cardImage: null,
-        popupImage: null,
-        gradient: 'from-[#6366f1] to-[#8b5cf6]',
-        tech: ['React', 'Node.js', 'Tailwind CSS'],
-        github: 'https://github.com/IT24101654/SkillDrive',
-        live: null,
-    },
+    }
 ];
 
 const Projects = () => {
@@ -145,26 +150,61 @@ const Projects = () => {
                 }
             }
             angleRef.current += velocityRef.current;
-            slider.style.transform = `perspective(1200px) rotateX(-4deg) rotateY(${angleRef.current}deg)`;
+            slider.style.transform = `perspective(1200px) rotateX(-8deg) rotateY(${angleRef.current}deg)`;
+
+            const items = slider.querySelectorAll('.item');
+            const quantity = PROJECTS.length;
+            items.forEach((item, index) => {
+                const position = index + 1;
+                const cardAngle = ((position - 1) * (360 / quantity) + angleRef.current) % 360;
+                const normalizedAngle = ((cardAngle % 360) + 360) % 360;
+                const cosValue = Math.cos((normalizedAngle * Math.PI) / 180);
+                const depthFactor = (cosValue + 1) / 2;
+                const blur = (1 - depthFactor) * 3.5;
+                const opacity = 0.4 + depthFactor * 0.6;
+                item.style.filter = `blur(${blur}px)`;
+                item.style.opacity = opacity;
+            });
+
             animationFrameId = requestAnimationFrame(tick);
         };
 
         tick();
 
+        const isCursorOverCarousel = (e) => {
+            const containerRect = container.getBoundingClientRect();
+            const sliderRect = slider.getBoundingClientRect();
+            const centerX = sliderRect.left + sliderRect.width / 2;
+
+            const isMobile = window.innerWidth <= 768;
+            const cssRadius = isMobile ? 220 : 500;
+            const halfCardW = isMobile ? 100 : 110;
+            const visualHalfW = cssRadius + halfCardW;
+
+            return (
+                e.clientX >= centerX - visualHalfW &&
+                e.clientX <= centerX + visualHalfW &&
+                e.clientY >= containerRect.top &&
+                e.clientY <= containerRect.bottom
+            );
+        };
+
         const handleWheel = (e) => {
             if (modalOpenRef.current) return;
+            if (!isCursorOverCarousel(e)) return;
             e.preventDefault();
+            e.stopPropagation();
             velocityRef.current += e.deltaY * SENSITIVITY;
             isScrolling = true;
             clearTimeout(idleTimer);
             idleTimer = setTimeout(() => { isScrolling = false; }, 2000);
         };
 
-        container.addEventListener('wheel', handleWheel, { passive: false });
+        document.addEventListener('wheel', handleWheel, { passive: false });
 
         return () => {
             cancelAnimationFrame(animationFrameId);
-            container.removeEventListener('wheel', handleWheel);
+            document.removeEventListener('wheel', handleWheel);
             clearTimeout(idleTimer);
         };
     }, []);
@@ -183,7 +223,7 @@ const Projects = () => {
                 className="w-full h-[60vh] md:h-[50vh] flex items-center justify-center mb-32 md:mb-64"
             >
                 <div
-                    className="slider relative w-[160px] h-[220px] md:w-[180px] md:h-[250px] [transform-style:preserve-3d]"
+                    className="slider relative w-[200px] h-[275px] md:w-[220px] md:h-[305px] [transform-style:preserve-3d]"
                     style={{ '--quantity': PROJECTS.length }}
                     ref={sliderRef}
                 >
@@ -263,7 +303,6 @@ const Projects = () => {
                 </div>
             </div>
 
-            {/* ── Project Details Modal ── */}
             {selectedProject && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-md transition-opacity" onClick={() => setSelectedProject(null)}>
                     <div
@@ -277,7 +316,6 @@ const Projects = () => {
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
 
-                        {/* Image Header */}
                         <div className="w-full h-48 md:h-72 rounded-2xl mb-6 overflow-hidden relative shadow-lg">
                             {(selectedProject.popupImage || selectedProject.cardImage) ? (
                                 <img src={selectedProject.popupImage || selectedProject.cardImage} alt={selectedProject.title} className="w-full h-full object-cover" />
