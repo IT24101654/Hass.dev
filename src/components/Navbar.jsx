@@ -5,6 +5,7 @@ import { FiMail } from 'react-icons/fi';
 
 function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
 
     useEffect(() => {
         const handleScroll = () => {
@@ -14,17 +15,49 @@ function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        const scrollContainer = document.getElementById('snap-container');
+        const sections = document.querySelectorAll('section[id]');
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id);
+                    }
+                });
+            },
+            {
+                root: scrollContainer,
+                threshold: 0.4,
+            }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
             <div className="logo"><span>H</span>ass.dev</div>
 
             <ul className="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-
+                {[
+                    { id: 'home', label: 'Home' },
+                    { id: 'about', label: 'About' },
+                    { id: 'projects', label: 'Projects' },
+                    { id: 'skills', label: 'Skills' },
+                    { id: 'contact', label: 'Contact' },
+                ].map(({ id, label }) => (
+                    <li key={id}>
+                        <a
+                            href={`#${id}`}
+                            className={activeSection === id ? 'active' : ''}
+                        >
+                            {label}
+                        </a>
+                    </li>
+                ))}
             </ul>
 
             <div className="flex items-center gap-5">
@@ -45,7 +78,7 @@ function Navbar() {
                 </a>
             </div>
         </nav>
-    )
+    );
 }
 
 export default Navbar;
