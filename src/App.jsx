@@ -1,48 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Loader from './components/Loader';
+import React, { useState, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import Loader   from './components/Loader';
+import Navbar   from './components/Navbar';
+import Hero     from './components/Hero';
+import About    from './components/About';
 import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Contact from './components/Contact';
-import gradientImg from './assets/gradient.png';
+import Skills   from './components/Skills';
+import Contact  from './components/Contact';
 
-function App() {
+export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const handleLoaded = useCallback(() => setIsLoading(false), []);
 
   return (
     <>
       <AnimatePresence>
-        {isLoading && <Loader onLoaded={() => setIsLoading(false)} />}
+        {isLoading && <Loader key="loader" onLoaded={handleLoaded} />}
       </AnimatePresence>
 
-      {/* Fixed background decorations */}
-      <img
-        src={gradientImg}
-        alt="background gradient"
-        className="fixed top-0 right-0 opacity-80 z-[-1] pointer-events-none"
+      {/* Fixed red glow top-right */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed top-0 right-0 z-0"
+        style={{
+          width: '600px',
+          height: '600px',
+          background: 'radial-gradient(circle at 80% 10%, rgba(255,42,42,0.13) 0%, transparent 70%)',
+        }}
       />
-      <div className="fixed top-[20%] right-0 w-[15rem] h-0 shadow-[0_0_700px_15px_white] -rotate-[30deg] z-[-1] pointer-events-none"></div>
 
-      {/* Fixed Navbar */}
-      <Navbar />
-
-      {/* 
-        The main snap container:
-        - h-screen + overflow-y-scroll  → scrolling happens HERE (not on html/body)
-        - scroll-snap-type: y mandatory → snaps on this container
-        Each direct child section gets scroll-snap-align: start
-      */}
+      {/* Main scrollable container — this is what useScroll tracks in Hero */}
       <div
         id="snap-container"
-        className={`bg-[#0f0f0f] text-white ${isLoading ? 'h-screen overflow-hidden' : 'h-screen overflow-y-scroll'}`}
+        className="bg-[#0a0a0a] text-white"
         style={{
-          scrollSnapType: 'y mandatory',
-          scrollBehavior: 'smooth',
+          height:           '100vh',
+          overflowY:        'scroll',
+          scrollSnapType:   'y mandatory',
+          scrollBehavior:   'smooth',
+          visibility:       isLoading ? 'hidden' : 'visible',
         }}
+        aria-hidden={isLoading}
       >
+        <Navbar />
+
         {/* Section 1 – Hero */}
         <div style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <Hero isLoading={isLoading} />
@@ -67,9 +68,8 @@ function App() {
         <div style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
           <Contact />
         </div>
+
       </div>
     </>
   );
 }
-
-export default App;

@@ -1,373 +1,370 @@
-import React, { useEffect, useRef, useState } from 'react';
-import hassDevImageP from '../assets/Hass.dev Portfolio-popup.png';
-import hassDevImageC from '../assets/Hass.dev Portfolio-card.png';
-import parkifyImageP from '../assets/Parkify Website-popup.png';
-import parkifyImageC from '../assets/Parkify Website-card.png';
-import JARVISImageP from '../assets/JARVIS.png';
-import JARVISImageC from '../assets/JARVIS-card.jpg';
-import parkifyWImageC from '../assets/Parkify Mobile App-card.png';
-import parkifyWImageP from '../assets/Parkify Mobile App-popup.png';
-import LivingArtImageC from '../assets/Living Art Gallery-card.png';
-import LivingArtImageP from '../assets/Living Art Gallery-popup.png';
-import NeoSchoolImageC from '../assets/NeoSchool-card.png';
-import NeoSchoolImageP from '../assets/NeoSchool-popup.jpeg';
-import EcoLeafImageC from '../assets/EcoLeaf-card.png';
-import EcoLeafImageP from '../assets/EcoLeaf-popup.png';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaGithub } from 'react-icons/fa';
+import { FiExternalLink, FiX, FiArrowRight } from 'react-icons/fi';
 
+/* ── Asset imports ─────────────────────────────────────────────── */
+import hassDevC from '../assets/Hass.dev Portfolio-card.png';
+import hassDevP from '../assets/Hass.dev Portfolio-popup.png';
+import parkifyC from '../assets/Parkify Website-card.png';
+import parkifyP from '../assets/Parkify Website-popup.png';
+import jarvisC from '../assets/JARVIS-card.jpg';
+import jarvisP from '../assets/JARVIS.png';
+import parkifyWC from '../assets/Parkify Mobile App-card.PNG';
+import parkifyWP from '../assets/Parkify Mobile App-popup.PNG';
+import artC from '../assets/Living Art Gallery-card.png';
+import artP from '../assets/Living Art Gallery-popup.png';
+import schoolC from '../assets/NeoSchool-card.png';
+import schoolP from '../assets/NeoSchool-popup.jpeg';
+import ecoC from '../assets/EcoLeaf-card.png';
+import ecoP from '../assets/EcoLeaf-popup.png';
 
-
+/* ── Project data ──────────────────────────────────────────────── */
 const PROJECTS = [
-    {
-        id: 1,
-        title: 'Hass.dev Portfolio',
-        description: 'Personal portfolio website showcasing projects, technical skills, and journey. Built with React and 3D elements.',
-        cardImage: hassDevImageC,
-        popupImage: hassDevImageP,
-        imagePosition: '50% 50%',
-        imageSize: 'cover',
-        gradient: 'from-[#ec4899] to-[#a855f7]',
-        tech: ['React', 'Tailwind', '3D UI'],
-        github: 'https://github.com/IT24101654/Hass.dev',
-        live: null,
-    },
-    {
-        id: 2,
-        title: 'Parkify Website',
-        description: 'Smart Parking Management System helping drivers find and book parking via Google Maps, with owner dashboards and admin controls.',
-        cardImage: parkifyImageC,
-        popupImage: parkifyImageP,
-        imagePosition: '47% 60%',
-        imageSize: '160%',
-        gradient: 'from-[#06b6d4] to-[#3b82f6]',
-        tech: ['React', 'Node.js', 'Express', 'MongoDB'],
-        github: 'https://github.com/IT24101654/Parkify---Parking-Management-System',
-        live: 'https://parkify-frontend.onrender.com',
-    },
-    {
-        id: 3,
-        title: 'Parkify Mobile App',
-        description: 'Mobile application for parking discovery. Features a React Native Expo frontend and a secure Node.js/MongoDB backend API.',
-        cardImage: parkifyWImageC,
-        popupImage: parkifyWImageP,
-        imagePosition: '36% 45%',
-        imageSize: '115%',
-        gradient: 'from-[#ef4444] to-[#f97316]',
-        tech: ['React Native', 'Expo', 'Node.js', 'MongoDB'],
-        github: 'https://github.com/IT24101654/Parkify-Frontend',
-        live: null,
-    },
-    {
-        id: 4,
-        title: 'J.A.R.V.I.S Assistant',
-        description: 'AI-powered desktop assistant inspired by Iron Man, featuring voice commands, web search, and intelligent task execution.',
-        cardImage: JARVISImageC,
-        popupImage: JARVISImageP,
-        imagePosition: '0% 0%',
-        imageSize: '100%',
-        gradient: 'from-[#ff2a2a] to-[#ff6b6b]',
-        tech: ['Python', 'AI', 'Voice Recognition'],
-        github: 'https://github.com/IT24101654/J.A.R.V.I.S',
-        live: null,
-    },
-    {
-        id: 5,
-        title: 'Living Art Gallery',
-        description: 'High-quality hand-drawn pencil portrait gallery showcasing facial details, shading, and real emotions.',
-        cardImage: LivingArtImageC,
-        popupImage: LivingArtImageP,
-        imagePosition: '15% 60%',
-        imageSize: '320%',
-        gradient: 'from-[#10b981] to-[#059669]',
-        tech: ['HTML', 'CSS', 'JavaScript'],
-        github: 'https://github.com/IT24101654/Living-Art-by-Hasarinda',
-        live: null,
-    },
-    {
-        id: 6,
-        title: 'NeoSchool',
-        description: 'Web-based School Information Management System for handling student data, courses, and administrative workflows.',
-        cardImage: NeoSchoolImageC,
-        popupImage: NeoSchoolImageP,
-        imagePosition: '0% 0%',
-        imageSize: '120%',
-        gradient: 'from-[#f59e0b] to-[#ef4444]',
-        tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
-        github: 'https://github.com/IT24101654/NeoSchool',
-        live: null,
-    },
-    {
-        id: 7,
-        title: 'EcoLeaf AI/ML',
-        description: 'Machine Learning project using Jupyter Notebooks to detect plant diseases from leaf images with high accuracy.',
-        cardImage: EcoLeafImageC,
-        popupImage: EcoLeafImageP,
-        imagePosition: '50% 80%',
-        imageSize: '150%',
-        gradient: 'from-[#84cc16] to-[#16a34a]',
-        tech: ['Python', 'Machine Learning', 'Jupyter'],
-        github: 'https://github.com/IT24101654/EcoLeaf-AIML',
-        live: null,
-    }
+  {
+    id: 1,
+    title: 'Hass.dev Portfolio',
+    tagline: 'Personal portfolio with 3D web experience',
+    description: "My own portfolio site — the one you're looking at right now. Designed in Figma, built with React, Tailwind CSS, and a Spline 3D scene for the hero. The main challenge was keeping the 3D element performant while keeping the page fully accessible and mobile-responsive.",
+    highlights: ['Lazy-loaded 3D scene with static fallback', 'Fully keyboard-accessible with focus management', 'Framer Motion scroll animations', 'Formspree contact form integration'],
+    cardImg: hassDevC, popupImg: hassDevP,
+    tech: ['React', 'Tailwind CSS', 'Framer Motion', 'Spline'],
+    github: 'https://github.com/IT24101654/Hass.dev',
+    live: null,
+    accent: '#ec4899',
+  },
+  {
+    id: 2,
+    title: 'Parkify — Web',
+    tagline: 'Smart parking management platform',
+    description: 'A full-stack web app that lets drivers find, view, and book parking spots on an interactive Google Maps interface. Parking space owners get a dashboard to manage listings; admins oversee the whole platform. Built with the MERN stack and deployed on Render.',
+    highlights: ['Google Maps integration with real-time availability', 'JWT authentication for three user roles', 'Owner dashboard with booking analytics', 'REST API consumed by both web and mobile clients'],
+    cardImg: parkifyC, popupImg: parkifyP,
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
+    github: 'https://github.com/IT24101654/Parkify---Parking-Management-System',
+    live: 'https://parkify-frontend.onrender.com',
+    accent: '#3b82f6',
+  },
+  {
+    id: 3,
+    title: 'Parkify — Mobile',
+    tagline: 'React Native parking app for iOS and Android',
+    description: 'The mobile companion to Parkify Web. Drivers search for nearby parking, view real-time availability, and book a spot from their phone. The React Native Expo frontend talks to the same Node.js/MongoDB backend API, keeping data consistent across both platforms.',
+    highlights: ['Cross-platform: iOS and Android via Expo', 'Shared backend API with the web platform', 'Location-based search and filtering', 'Booking confirmation with push notification support'],
+    cardImg: parkifyWC, popupImg: parkifyWP,
+    tech: ['React Native', 'Expo', 'Node.js', 'MongoDB', 'REST API'],
+    github: 'https://github.com/IT24101654/Parkify-Frontend',
+    live: null,
+    accent: '#f97316',
+  },
+  {
+    id: 4,
+    title: 'J.A.R.V.I.S Assistant',
+    tagline: 'Voice-controlled AI desktop assistant',
+    description: "An Iron Man-inspired AI assistant for the desktop. You speak a command, it listens via Python's SpeechRecognition, parses intent, then executes: web search, weather lookups, app launching, time checks. The first project where I felt the real power of combining APIs with voice interfaces.",
+    highlights: ['Speech recognition with real-time intent parsing', 'Pluggable command system — easy to extend', 'Integrates OpenWeatherMap and Wikipedia APIs', 'Text-to-speech responses with natural pacing'],
+    cardImg: jarvisC, popupImg: jarvisP,
+    tech: ['Python', 'SpeechRecognition', 'pyttsx3', 'OpenWeatherMap API', 'Wikipedia API'],
+    github: 'https://github.com/IT24101654/J.A.R.V.I.S',
+    live: null,
+    accent: '#ff2a2a',
+  },
+  {
+    id: 5,
+    title: 'Living Art Gallery',
+    tagline: 'Online gallery for hand-drawn pencil portraits',
+    description: 'A clean gallery site showcasing my pencil portrait work. Built with vanilla HTML, CSS, and JavaScript — no frameworks — for full layout control and minimal load times on image-heavy pages. Portraits open in a custom lightbox.',
+    highlights: ['Custom CSS grid masonry layout', 'Zero-dependency lightbox in ~80 lines of JS', 'Optimised image loading with lazy attribute', 'Mobile-first responsive design'],
+    cardImg: artC, popupImg: artP,
+    tech: ['HTML5', 'CSS3', 'JavaScript'],
+    github: 'https://github.com/IT24101654/Living-Art-by-Hasarinda',
+    live: null,
+    accent: '#10b981',
+  },
+  {
+    id: 6,
+    title: 'NeoSchool',
+    tagline: 'School information management system',
+    description: 'A web-based school management system handling student records, course enrolment, grade tracking, and teacher assignments. Built with PHP, MySQL, HTML, CSS, and JavaScript as an academic project — taught me relational database design and role-based access control.',
+    highlights: ['Role-based access: admin, teacher, student', 'MySQL schema with normalised tables', 'CRUD for students, courses, and grades', 'Responsive admin dashboard'],
+    cardImg: schoolC, popupImg: schoolP,
+    tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
+    github: 'https://github.com/IT24101654/NeoSchool',
+    live: null,
+    accent: '#f59e0b',
+  },
+  {
+    id: 7,
+    title: 'EcoLeaf AI/ML',
+    tagline: 'Plant disease detection with machine learning',
+    description: 'A machine learning project that classifies plant leaf images to detect diseases. Trained a CNN on a public plant disease dataset using TensorFlow/Keras inside Jupyter notebooks. Achieved ~94% validation accuracy, covering the full ML workflow from data preprocessing to model evaluation.',
+    highlights: ['~94% validation accuracy on plant disease dataset', 'CNN trained with TensorFlow and Keras', 'Data augmentation to reduce overfitting', 'Confusion matrix and precision/recall analysis'],
+    cardImg: ecoC, popupImg: ecoP,
+    tech: ['Python', 'TensorFlow', 'Keras', 'Jupyter', 'scikit-learn', 'Matplotlib'],
+    github: 'https://github.com/IT24101654/EcoLeaf-AIML',
+    live: null,
+    accent: '#84cc16',
+  },
 ];
 
-const Projects = () => {
-    const [selectedProject, setSelectedProject] = useState(null);
-    const sliderRef = useRef(null);
-    const carouselContainerRef = useRef(null);
-    const isPaused = useRef(false);
-    const angleRef = useRef(0);
-    const velocityRef = useRef(0);
-    const modalOpenRef = useRef(false);
-    const [activeCard, setActiveCard] = useState(null);
+/* ── Helpers ────────────────────────────────────────────────────── */
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.55, delay, ease: 'easeOut' },
+});
 
-    modalOpenRef.current = !!selectedProject;
+/* ── Project Card ───────────────────────────────────────────────── */
+function Card({ project, onOpen, index }) {
+  return (
+    <motion.article
+      {...fadeUp(index * 0.05)}
+      className="group relative bg-white/[0.03] border border-white/[0.07] rounded-2xl overflow-hidden hover:border-white/[0.13] transition-colors duration-300 flex flex-col"
+    >
+      {/* Image */}
+      <div className="relative h-44 sm:h-48 md:h-52 overflow-hidden flex-shrink-0">
+        <img
+          src={project.cardImg}
+          alt={`${project.title} screenshot`}
+          loading="lazy"
+          width={600} height={400}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: project.accent, opacity: 0.7 }} aria-hidden="true" />
+      </div>
 
-    useEffect(() => {
-        const slider = sliderRef.current;
-        const container = carouselContainerRef.current;
-        if (!slider || !container) return;
+      {/* Body */}
+      <div className="flex flex-col flex-1 p-4 sm:p-5 md:p-6">
+        <p className="font-mono text-[10px] sm:text-xs tracking-wider mb-1" style={{ color: project.accent }}>
+          {project.tagline}
+        </p>
+        <h3 className="text-white font-semibold text-base sm:text-lg mb-2">{project.title}</h3>
+        <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3 flex-1">
+          {project.description}
+        </p>
 
-        const autoSpeed = 0.05;
-        let isScrolling = false;
-        let idleTimer = null;
-        const FRICTION = 0.92;
-        const SENSITIVITY = 0.003;
-        let animationFrameId;
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tech.slice(0, 3).map((t) => (
+            <span key={t} className="text-[10px] sm:text-xs font-medium text-gray-400 bg-white/[0.05] border border-white/[0.08] px-2 py-0.5 rounded-full">
+              {t}
+            </span>
+          ))}
+          {project.tech.length > 3 && (
+            <span className="text-[10px] sm:text-xs text-gray-500 px-1.5 py-0.5">
+              +{project.tech.length - 3}
+            </span>
+          )}
+        </div>
 
-        slider.style.animation = 'none';
-
-        const tick = () => {
-            if (modalOpenRef.current) {
-                velocityRef.current = 0;
-            } else {
-                if (isScrolling) {
-                    velocityRef.current *= FRICTION;
-                    if (Math.abs(velocityRef.current) < 0.01) isScrolling = false;
-                } else if (isPaused.current) {
-                    velocityRef.current *= 0.85;
-                } else {
-                    velocityRef.current += (autoSpeed - velocityRef.current) * 0.018;
-                }
-            }
-            angleRef.current += velocityRef.current;
-            slider.style.transform = `perspective(1200px) rotateX(-8deg) rotateY(${angleRef.current}deg)`;
-
-            const items = slider.querySelectorAll('.item');
-            const quantity = PROJECTS.length;
-            items.forEach((item, index) => {
-                const position = index + 1;
-                const cardAngle = ((position - 1) * (360 / quantity) + angleRef.current) % 360;
-                const normalizedAngle = ((cardAngle % 360) + 360) % 360;
-                const cosValue = Math.cos((normalizedAngle * Math.PI) / 180);
-                const depthFactor = (cosValue + 1) / 2;
-                const blur = (1 - depthFactor) * 3.5;
-                const opacity = 0.4 + depthFactor * 0.6;
-                item.style.filter = `blur(${blur}px)`;
-                item.style.opacity = opacity;
-            });
-
-            animationFrameId = requestAnimationFrame(tick);
-        };
-
-        tick();
-
-        const isCursorOverCarousel = (e) => {
-            const containerRect = container.getBoundingClientRect();
-            const sliderRect = slider.getBoundingClientRect();
-            const centerX = sliderRect.left + sliderRect.width / 2;
-
-            const isMobile = window.innerWidth <= 768;
-            const cssRadius = isMobile ? 220 : 500;
-            const halfCardW = isMobile ? 100 : 110;
-            const visualHalfW = cssRadius + halfCardW;
-
-            return (
-                e.clientX >= centerX - visualHalfW &&
-                e.clientX <= centerX + visualHalfW &&
-                e.clientY >= containerRect.top &&
-                e.clientY <= containerRect.bottom
-            );
-        };
-
-        const handleWheel = (e) => {
-            if (modalOpenRef.current) return;
-            if (!isCursorOverCarousel(e)) return;
-            e.preventDefault();
-            e.stopPropagation();
-            velocityRef.current += e.deltaY * SENSITIVITY;
-            isScrolling = true;
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(() => { isScrolling = false; }, 2000);
-        };
-
-        document.addEventListener('wheel', handleWheel, { passive: false });
-
-        return () => {
-            cancelAnimationFrame(animationFrameId);
-            document.removeEventListener('wheel', handleWheel);
-            clearTimeout(idleTimer);
-        };
-    }, []);
-
-    return (
-        <section id="projects" className="min-h-screen py-8 md:py-20 flex flex-col justify-center w-full relative z-10">
-            <div className="max-w-7xl mx-auto px-4 w-full">
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-2 md:mb-8">
-                    <span className="text-[#ff2a2a] font-mono text-lg md:text-2xl block mb-1 md:mb-2">02.</span>
-                    My Projects
-                </h2>
-            </div>
-
-            <div
-                ref={carouselContainerRef}
-                className="w-full h-[60vh] md:h-[50vh] flex items-center justify-center mb-32 md:mb-64"
+        {/* Actions */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => onOpen(project)}
+            className="flex-1 flex items-center justify-center gap-1.5 text-xs sm:text-sm font-medium text-white border border-white/20 hover:border-white/40 rounded-lg py-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff2a2a]"
+          >
+            Details <FiArrowRight size={13} aria-hidden="true" />
+          </button>
+          <a
+            href={project.github}
+            target="_blank" rel="noopener noreferrer"
+            className="p-2 text-gray-400 hover:text-white border border-white/10 hover:border-white/30 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff2a2a]"
+            aria-label={`View ${project.title} on GitHub`}
+          >
+            <FaGithub size={15} />
+          </a>
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank" rel="noopener noreferrer"
+              className="p-2 text-gray-400 hover:text-white border border-white/10 hover:border-white/30 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff2a2a]"
+              aria-label={`Open ${project.title} live demo`}
             >
-                <div
-                    className="slider relative w-[200px] h-[275px] md:w-[220px] md:h-[305px] [transform-style:preserve-3d]"
-                    style={{ '--quantity': PROJECTS.length }}
-                    ref={sliderRef}
-                >
-                    {PROJECTS.map((project) => (
-                        <div
-                            key={project.id}
-                            className="item group absolute inset-0 rounded-[16px] overflow-hidden cursor-pointer"
-                            style={{ '--position': project.id }}
-                            onClick={() => setSelectedProject(project)}
-                            onMouseEnter={() => { isPaused.current = true; setActiveCard(project.id); }}
-                            onMouseLeave={() => { isPaused.current = false; setActiveCard(null); }}
-                        >
-                            {project.cardImage ? (
-                                <div
-                                    className="w-full h-full"
-                                    style={{
-                                        backgroundImage: `url("${project.cardImage}")`,
-                                        backgroundPosition: project.imagePosition || 'center',
-                                        backgroundSize: project.imageSize || 'cover',
-                                        backgroundRepeat: 'no-repeat'
-                                    }}
-                                />
-                            ) : (
-                                <div className={`w-full h-full bg-gradient-to-br ${project.gradient}`} />
-                            )}
+              <FiExternalLink size={15} />
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
 
-                            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/95 via-black/80 to-transparent p-3 z-10">
-                                <h3 className="text-white font-bold text-[14px] md:text-[13px] leading-tight mb-1">
-                                    {project.title}
-                                </h3>
-                                <p className="text-gray-300 text-[9px] md:text-[7px] leading-snug mb-2 line-clamp-3">
-                                    {project.description}
-                                </p>
-                                <div className="flex flex-wrap gap-1 mb-2">
-                                    {project.tech.map((t) => (
-                                        <span
-                                            key={t}
-                                            className="text-[7px] md:text-[5px] bg-white/10 text-white/80 border border-white/20 rounded-full px-2 py-0.5"
-                                        >
-                                            {t}
-                                        </span>
-                                    ))}
-                                </div>
-                                <div className="flex gap-2">
-                                    <a
-                                        href={project.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-1 bg-white text-black text-[8px] md:text-[5px] font-semibold rounded-full px-2 py-1 hover:bg-gray-200 transition-colors"
-                                        onClick={(e) => e.stopPropagation()}
-                                    >
-                                        <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-                                        </svg>
-                                        GitHub
-                                    </a>
-                                    {project.live && (
-                                        <a
-                                            href={project.live}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center gap-1 bg-[#ff2a2a] text-white text-[8px] md:text-[10px] font-semibold rounded-full px-2 py-1 hover:bg-red-400 transition-colors"
-                                            onClick={(e) => e.stopPropagation()}
-                                        >
-                                            ↗ Live
-                                        </a>
-                                    )}
-                                </div>
-                            </div>
+/* ── Modal ──────────────────────────────────────────────────────── */
+function Modal({ project, onClose }) {
+  const closeBtn = useRef(null);
+  const panel = useRef(null);
 
-                            <div
-                                className="absolute top-0 -left-[75%] w-[50%] h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-[20deg] z-[3] pointer-events-none animate-shimmer"
-                                style={{ animationDelay: `${project.id * 0.3}s` }}
-                            />
-                        </div>
-                    ))}
-                </div>
+  useEffect(() => {
+    const prev = document.activeElement;
+    closeBtn.current?.focus();
+    document.body.style.overflow = 'hidden';
+
+    const onKey = (e) => {
+      if (e.key === 'Escape') { onClose(); return; }
+      if (e.key !== 'Tab') return;
+      const focusable = panel.current?.querySelectorAll(
+        'a[href], button, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable?.length) return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+      prev?.focus();
+    };
+  }, [onClose]);
+
+  if (!project) return null;
+
+  return ReactDOM.createPortal(
+    <AnimatePresence>
+      <motion.div
+        key="modal-backdrop"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-4 md:p-8"
+        role="dialog" aria-modal="true" aria-labelledby="modal-title"
+        ref={panel}
+      >
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
+
+        {/* Panel */}
+        <motion.div
+          key="modal-panel"
+          initial={{ opacity: 0, scale: 0.96, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.96, y: 16 }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
+          className="relative z-10 w-full max-w-lg md:max-w-2xl bg-[#111] border border-white/[0.09] rounded-2xl overflow-hidden max-h-[92vh] flex flex-col"
+        >
+          {/* Header image */}
+          <div className="relative h-44 sm:h-52 md:h-60 flex-shrink-0">
+            <img
+              src={project.popupImg || project.cardImg}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111]/90 via-[#111]/20 to-transparent" aria-hidden="true" />
+            <div className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: project.accent }} aria-hidden="true" />
+            <button
+              ref={closeBtn} onClick={onClose}
+              className="absolute top-3 right-3 bg-black/60 hover:bg-black/80 text-white p-2 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              aria-label="Close dialog"
+            >
+              <FiX size={16} />
+            </button>
+          </div>
+
+          {/* Scrollable content */}
+          <div className="overflow-y-auto flex-1 p-5 sm:p-6 md:p-8">
+            <p className="font-mono text-[10px] sm:text-xs tracking-wider mb-1" style={{ color: project.accent }}>
+              {project.tagline}
+            </p>
+            <h2 id="modal-title" className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">
+              {project.title}
+            </h2>
+            <p className="text-gray-400 text-sm sm:text-[15px] leading-relaxed mb-5 md:mb-6">
+              {project.description}
+            </p>
+
+            {/* Highlights */}
+            <div className="mb-5 md:mb-6">
+              <h3 className="text-xs font-semibold text-white uppercase tracking-wider mb-3">Key highlights</h3>
+              <ul className="space-y-2">
+                {project.highlights.map((h) => (
+                  <li key={h} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-400">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: project.accent }} aria-hidden="true" />
+                    {h}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {selectedProject && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-md transition-opacity" onClick={() => setSelectedProject(null)}>
-                    <div
-                        className="relative w-full max-w-3xl bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2rem] p-6 md:p-8 overflow-y-auto max-h-[95vh] shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <button
-                            className="absolute top-4 right-4 z-10 bg-black/20 hover:bg-black/40 backdrop-blur-md text-white/80 hover:text-white transition-all rounded-full p-2"
-                            onClick={() => setSelectedProject(null)}
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </button>
+            {/* Tech stack */}
+            <div className="mb-6 md:mb-8">
+              <h3 className="text-xs font-semibold text-white uppercase tracking-wider mb-3">Tech stack</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((t) => (
+                  <span key={t} className="text-[11px] sm:text-xs font-medium text-gray-300 bg-white/[0.06] border border-white/10 px-2.5 sm:px-3 py-1 rounded-full">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-                        <div className="w-full h-48 md:h-72 rounded-2xl mb-6 overflow-hidden relative shadow-lg">
-                            {(selectedProject.popupImage || selectedProject.cardImage) ? (
-                                <img src={selectedProject.popupImage || selectedProject.cardImage} alt={selectedProject.title} className="w-full h-full object-cover" />
-                            ) : (
-                                <div className={`w-full h-full bg-gradient-to-br ${selectedProject.gradient} flex items-center justify-center`}>
-                                    <span className="text-white/60 font-bold text-2xl md:text-4xl tracking-widest uppercase text-center px-4">{selectedProject.title}</span>
-                                </div>
-                            )}
-                        </div>
+            {/* Links */}
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={project.github} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 hover:border-white/20 text-white text-xs sm:text-sm font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff2a2a]"
+              >
+                <FaGithub size={15} /> View on GitHub
+              </a>
+              {project.live && (
+                <a
+                  href={project.live} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 text-white text-xs sm:text-sm font-semibold rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff2a2a]"
+                  style={{ background: project.accent }}
+                >
+                  <FiExternalLink size={15} /> Live demo
+                </a>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>,
+    document.body
+  );
+}
 
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 tracking-tight">{selectedProject.title}</h2>
+/* ── Section ────────────────────────────────────────────────────── */
+export default function Projects() {
+  const [selected, setSelected] = useState(null);
+  const open = useCallback((p) => setSelected(p), []);
+  const close = useCallback(() => setSelected(null), []);
 
-                        <div className="flex flex-wrap gap-2 mb-6">
-                            {selectedProject.tech.map((t) => (
-                                <span key={t} className="text-[10px] md:text-xs bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full px-4 py-1.5 font-bold tracking-wider shadow-sm">
-                                    {t}
-                                </span>
-                            ))}
-                        </div>
+  return (
+    <section
+      id="projects"
+      className="relative z-10 h-screen flex flex-col pt-24"
+    >
+      {/* flex-1 min-h-0 — correctly fills remaining height inside a flex-col parent */}
+      <div className="max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-14 flex flex-col flex-1 min-h-0 w-full">
 
-                        <p className="text-gray-200 text-sm md:text-lg leading-relaxed mb-8 font-light">
-                            {selectedProject.description}
-                        </p>
+        {/* Heading — pinned, never scrolls */}
+        <motion.div {...fadeUp()} className="mb-5 md:mb-7 flex-shrink-0">
+          <p className="font-mono text-[#ff2a2a] text-xs sm:text-sm tracking-[0.15em] uppercase mb-2">
+            02 — Projects
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Things I've built</h2>
+        </motion.div>
 
-                        <div className="flex flex-wrap gap-4">
-                            {selectedProject.github && (
-                                <a
-                                    href={selectedProject.github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 text-white font-semibold rounded-full px-6 py-3 transition-colors"
-                                >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" /></svg>
-                                    View GitHub
-                                </a>
-                            )}
-                            {selectedProject.live && (
-                                <a
-                                    href={selectedProject.live}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-2 bg-[#ff2a2a] text-white font-bold rounded-full px-6 py-3 hover:bg-[#ff4a4a] shadow-[0_0_20px_rgba(255,42,42,0.4)] transition-all"
-                                >
-                                    ↗ Live Demo
-                                </a>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            )}
-        </section>
-    );
-};
+        {/* Scrollable card grid — takes all remaining space */}
+        <div
+          className="overflow-y-auto flex-1 min-h-0 pb-6 pr-1"
+          style={{ scrollbarWidth: 'thin', scrollbarColor: '#ff2a2a transparent' }}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+            {PROJECTS.map((p, i) => (
+              <Card key={p.id} project={p} onOpen={open} index={i} />
+            ))}
+          </div>
+        </div>
 
-export default Projects;
+      </div>
+
+      {selected && <Modal project={selected} onClose={close} />}
+    </section>
+  );
+}
