@@ -272,7 +272,6 @@ const Skills = () => {
               transform: visible ? 'translateY(0)' : 'translateY(20px)',
             }}
           >
-            <span className="sk-num">03.</span>
             <h2 className="sk-title">My Toolkit</h2>
           </div>
 

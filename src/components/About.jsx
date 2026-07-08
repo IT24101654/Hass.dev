@@ -7,7 +7,6 @@ const About = () => {
     <section id="about" className="min-h-[100svh] py-6 md:py-10 flex flex-col justify-center w-full relative z-10">
       <div className="max-w-[1400px] mx-auto px-2 md:px-4 w-full">
         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 md:mb-8 tracking-wider">
-          <span className="text-[#ff2a2a] font-mono text-lg md:text-2xl block mb-1 md:mb-2">01.</span>
           My Story
         </h2>
 

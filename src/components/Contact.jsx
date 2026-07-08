@@ -152,7 +152,6 @@ const Contact = () => {
       <div className="ct-inner">
         {/* Heading */}
         <div className="mb-8">
-          <span style={{ color: '#ff2a2a', fontFamily: "'Fira Code', monospace", fontSize: '1.125rem', display: 'block', marginBottom: '0.15rem' }}>04.</span>
           <h2 className="text-3xl md:text-5xl font-bold text-white">Let's Connect</h2>
         </div>
 

@@ -345,7 +345,7 @@ export default function Projects() {
         {/* Heading — pinned, never scrolls */}
         <motion.div {...fadeUp()} className="mb-5 md:mb-7 flex-shrink-0">
           <p className="font-mono text-[#ff2a2a] text-xs sm:text-sm tracking-[0.15em] uppercase mb-2">
-            02 — Projects
+            Projects
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">Things I've built</h2>
         </motion.div>
