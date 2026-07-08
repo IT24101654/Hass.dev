@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState(null); // 'sending' | 'sent' | 'error'
+  const [status, setStatus] = useState(null); 
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -45,6 +45,7 @@ function Navbar() {
       <ul className="nav-links">
         {[
           { id: 'home',     label: 'Home' },
+          { id: 'hero-details', label: 'Details' },
           { id: 'about',    label: 'My Story' },
           { id: 'projects', label: 'Projects' },
           { id: 'skills',   label: 'My Toolkit' },

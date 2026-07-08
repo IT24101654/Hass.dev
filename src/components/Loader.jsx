@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const DISPLAY_NAME = 'Hass.dev';
-const TAGLINE      = 'Full Stack Developer';
+const TAGLINE = 'Full Stack Developer';
 
-export default function Loader({ onLoaded }) {
-  const [typed,       setTyped]       = useState('');
+export default function Loader({ onLoaded, isSplineLoaded }) {
+  const [typed, setTyped] = useState('');
   const [showTagline, setShowTagline] = useState(false);
-  const [progress,    setProgress]    = useState(0);
+  const [progress, setProgress] = useState(0);
 
   /* ── Typewriter ──────────────────────────────── */
   useEffect(() => {
@@ -23,11 +23,30 @@ export default function Loader({ onLoaded }) {
     return () => clearInterval(t);
   }, []);
 
+  const splineLoadedRef = React.useRef(isSplineLoaded);
+  useEffect(() => {
+    splineLoadedRef.current = isSplineLoaded;
+  }, [isSplineLoaded]);
+
+  /* ── Safety timeout: if Spline takes > 6s, stop waiting ── */
+  const splineTimeoutRef = React.useRef(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      splineTimeoutRef.current = true; // Allow progress past 90% regardless
+    }, 6000);
+    return () => clearTimeout(timeout);
+  }, []);
+
   /* ── Progress ────────────────────────────────── */
   useEffect(() => {
     let cur = 0;
     const t = setInterval(() => {
       cur += Math.random() * 11 + 3;
+
+      // Hold at 90% until Spline loads — but max 6 seconds (splineTimeoutRef)
+      if (!splineLoadedRef.current && !splineTimeoutRef.current && cur > 90) {
+        cur = 90;
+      }
       if (cur >= 100) {
         cur = 100;
         setProgress(100);
@@ -42,9 +61,10 @@ export default function Loader({ onLoaded }) {
 
   const statusLabel =
     progress < 25 ? 'initialising...'
-    : progress < 55 ? 'loading assets...'
-    : progress < 85 ? 'preparing scene...'
-    : 'ready';
+      : progress < 55 ? 'loading assets...'
+        : progress < 85 ? 'preparing scene...'
+          : progress < 100 ? 'loading 3D scene...'
+            : 'ready';
 
   return (
     <motion.div
@@ -80,7 +100,7 @@ export default function Loader({ onLoaded }) {
           position: 'absolute', inset: 0, pointerEvents: 'none',
           backgroundImage: 'radial-gradient(circle, rgba(255,42,42,.12) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
-          maskImage:       'radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 100%)',
+          maskImage: 'radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 100%)',
           WebkitMaskImage: 'radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 100%)',
         }}
       />
@@ -94,15 +114,15 @@ export default function Loader({ onLoaded }) {
       }} />
 
       {/* Corner brackets */}
-      {[['top-8 left-8','borderTop borderLeft'],['top-8 right-8','borderTop borderRight'],
-        ['bottom-8 left-8','borderBottom borderLeft'],['bottom-8 right-8','borderBottom borderRight']]
+      {[['top-8 left-8', 'borderTop borderLeft'], ['top-8 right-8', 'borderTop borderRight'],
+      ['bottom-8 left-8', 'borderBottom borderLeft'], ['bottom-8 right-8', 'borderBottom borderRight']]
         .map(([pos, borders], i) => (
           <div key={i} className={`ld-corner absolute ${pos}`} aria-hidden="true" style={{
             width: 28, height: 28,
-            borderTop:    borders.includes('borderTop')    ? '2px solid rgba(255,42,42,.55)' : 'none',
+            borderTop: borders.includes('borderTop') ? '2px solid rgba(255,42,42,.55)' : 'none',
             borderBottom: borders.includes('borderBottom') ? '2px solid rgba(255,42,42,.55)' : 'none',
-            borderLeft:   borders.includes('borderLeft')  ? '2px solid rgba(255,42,42,.55)' : 'none',
-            borderRight:  borders.includes('borderRight') ? '2px solid rgba(255,42,42,.55)' : 'none',
+            borderLeft: borders.includes('borderLeft') ? '2px solid rgba(255,42,42,.55)' : 'none',
+            borderRight: borders.includes('borderRight') ? '2px solid rgba(255,42,42,.55)' : 'none',
           }} />
         ))
       }
@@ -118,7 +138,7 @@ export default function Loader({ onLoaded }) {
           className="flex items-baseline mb-2 h-14"
         >
           <h1 className="text-white font-extrabold text-5xl tracking-tight"
-              style={{ fontFamily: 'Inter,sans-serif', letterSpacing: '-0.02em' }}>
+            style={{ fontFamily: 'Inter,sans-serif', letterSpacing: '-0.02em' }}>
             <span style={{ color: '#ff2a2a', filter: 'drop-shadow(0 0 6px rgba(255,42,42,.7))' }}>
               {typed.slice(0, 1)}
             </span>
