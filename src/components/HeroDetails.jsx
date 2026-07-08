@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiDownload } from 'react-icons/fi';
 import cvFile from '../assets/Yasith_Hasarinda_CV.pdf';
-// import fullNewVideo from '../assets/Full New.MP4';
 import myImage from '../assets/My 1.png';
 
 const HeroDetails = () => {
@@ -16,17 +15,7 @@ const HeroDetails = () => {
           className="w-full h-full object-cover opacity-100"
         />
 
-        {/*
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-100"
-        >
-          <source src={fullNewVideo} type="video/mp4" />
-        </video>
-        */}
+
 
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a0a]/50 to-[#0a0a0a]" />
       </div>
