@@ -58,7 +58,7 @@ const Contact = () => {
                     background: rgba(255,255,255,0.03);
                     border: 1px solid rgba(255,255,255,0.08);
                     border-radius: 24px;
-                    padding: 2.8rem;
+                    padding: 2rem;
                     backdrop-filter: blur(16px);
                     -webkit-backdrop-filter: blur(16px);
                 }
@@ -86,9 +86,9 @@ const Contact = () => {
                     background: rgba(255,255,255,0.04);
                     border: 1px solid rgba(255,255,255,0.09);
                     border-radius: 12px;
-                    padding: 0.85rem 1.1rem;
+                    padding: 0.75rem 1rem;
                     color: #fff;
-                    font-size: 1.05rem;
+                    font-size: 0.95rem;
                     font-family: 'Inter', sans-serif;
                     outline: none;
                     transition: border-color 0.2s, box-shadow 0.2s;
@@ -105,10 +105,10 @@ const Contact = () => {
                     background: #ff2a2a;
                     color: #fff;
                     font-weight: 700;
-                    font-size: 1.05rem;
+                    font-size: 0.95rem;
                     border: none;
                     border-radius: 12px;
-                    padding: 1rem;
+                    padding: 0.85rem;
                     cursor: pointer;
                     letter-spacing: 0.03em;
                     transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
@@ -122,7 +122,7 @@ const Contact = () => {
                     align-items: center;
                     gap: 1rem;
                     color: rgba(255,255,255,0.55);
-                    font-size: 1.05rem;
+                    font-size: 0.95rem;
                     text-decoration: none;
                     transition: color 0.2s;
                     margin-bottom: 1.2rem;
@@ -163,7 +163,7 @@ const Contact = () => {
       <div className="ct-inner">
         {/* Heading */}
         <div className="mb-6 md:mb-8">
-          <h2 className="text-2xl md:text-5xl font-bold text-white">Let's Connect</h2>
+          <h2 className="text-2xl md:text-4xl font-bold text-white">Let's Connect</h2>
         </div>
 
         <div className="ct-grid">
@@ -176,8 +176,8 @@ const Contact = () => {
             className="ct-glass flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-white font-bold text-lg md:text-2xl mb-2 md:mb-3 border-l-4 border-[#ff2a2a] pl-3">Get in Touch</h3>
-              <p className="text-gray-400 text-[13px] md:text-base leading-relaxed mb-5 md:mb-8">
+              <h3 className="text-white font-bold text-lg md:text-xl mb-2 md:mb-3 border-l-4 border-[#ff2a2a] pl-3">Get in Touch</h3>
+              <p className="text-gray-400 text-[13px] md:text-sm leading-relaxed mb-5 md:mb-8">
                 I'm open to new opportunities and collaborations. Have a project, question, or just want to say hi? I'll get back to you as soon as possible.
               </p>
 
