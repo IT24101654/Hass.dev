@@ -67,7 +67,7 @@ const Contact = () => {
                     .ct-inner { padding: 0 0.75rem; }
                     .ct-info-row { font-size: 0.75rem; margin-bottom: 0.8rem; }
                     .ct-icon-wrap { width: 32px; height: 32px; border-radius: 8px; }
-                    .ct-social-btn { width: 36px; height: 36px; }
+                    .ct-social-btn { width: 32px; height: 32px; }
                     .ct-input { font-size: 0.85rem; padding: 0.7rem 0.9rem; }
                     .ct-btn { padding: 0.75rem; font-size: 0.85rem; box-sizing: border-box; }
                     .ct-label { font-size: 0.7rem; }
@@ -198,24 +198,24 @@ const Contact = () => {
 
             <div>
               <p className="text-gray-500 text-sm uppercase tracking-widest mb-4 font-semibold">Social</p>
-              <div className="flex flex-wrap gap-3 sm:gap-4">
+              <div className="flex flex-wrap gap-2 sm:gap-4">
                 <a href="https://github.com/IT24101654" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="GitHub">
-                  <FaGithub className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
+                  <FaGithub className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.linkedin.com/in/yasithhasarinda" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="LinkedIn">
-                  <FaLinkedin className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
+                  <FaLinkedin className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.facebook.com/yasith.lathika" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Facebook">
-                  <FaFacebook className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
+                  <FaFacebook className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.instagram.com/hasa_rinda" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Instagram">
-                  <FaInstagram className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
+                  <FaInstagram className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.tiktok.com/@hase_24" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="TikTok">
-                  <FaTiktok className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
+                  <FaTiktok className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://wa.me/94779114877" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="WhatsApp">
-                  <FaWhatsapp className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
+                  <FaWhatsapp className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
                 </a>
               </div>
             </div>

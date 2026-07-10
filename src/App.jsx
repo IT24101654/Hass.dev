@@ -39,6 +39,7 @@ export default function App() {
         style={{
           height: '100vh',
           overflowY: 'scroll',
+          overflowX: 'hidden',
           scrollBehavior: 'smooth',
           visibility: isLoading ? 'hidden' : 'visible',
         }}
