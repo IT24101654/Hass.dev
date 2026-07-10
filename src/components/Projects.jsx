@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaFigma } from 'react-icons/fa';
 import { FiExternalLink, FiX, FiArrowRight } from 'react-icons/fi';
 
 /* ── Asset imports ─────────────────────────────────────────────── */
@@ -44,6 +44,7 @@ const PROJECTS = [
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
     github: 'https://github.com/IT24101654/Parkify---Parking-Management-System',
     live: 'https://parkify-frontend.onrender.com',
+    figma: 'https://www.figma.com/design/MCInBg3XbLly5cgiezr8nS/Parkify-UI-Flow?node-id=0-1&t=3mSLBFmVPXkfaA9u-1',
     accent: '#3b82f6',
   },
   {
@@ -186,6 +187,16 @@ function Card({ project, onOpen, index }) {
               <FiExternalLink size={15} />
             </a>
           )}
+          {project.figma && (
+            <a
+              href={project.figma}
+              target="_blank" rel="noopener noreferrer"
+              className="p-2 text-gray-400 hover:text-white border border-white/10 hover:border-white/30 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff2a2a]"
+              aria-label={`View ${project.title} UI Flow on Figma`}
+            >
+              <FaFigma size={15} />
+            </a>
+          )}
         </div>
       </div>
     </motion.article>
@@ -310,6 +321,14 @@ function Modal({ project, onClose }) {
               >
                 <FaGithub size={15} /> View on GitHub
               </a>
+              {project.figma && (
+                <a
+                  href={project.figma} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-white/[0.06] hover:bg-white/[0.1] border border-white/10 hover:border-white/20 text-white text-xs sm:text-sm font-medium rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff2a2a]"
+                >
+                  <FaFigma size={15} /> View UI Flow
+                </a>
+              )}
               {project.live && (
                 <a
                   href={project.live} target="_blank" rel="noopener noreferrer"
