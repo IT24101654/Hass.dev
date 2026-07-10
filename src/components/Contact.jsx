@@ -32,18 +32,18 @@ const Contact = () => {
   };
 
   const infoItems = [
-    { icon: <FiMail size={22} />, text: 'yasith.hasarinda2003@gmail.com', href: 'mailto:yasith.hasarinda2003@gmail.com' },
-    { icon: <FiMapPin size={22} />, text: 'Ampara, Sri Lanka', href: null },
+    { icon: <FiMail className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />, text: 'yasith.hasarinda2003@gmail.com', href: 'mailto:yasith.hasarinda2003@gmail.com' },
+    { icon: <FiMapPin className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />, text: 'Ampara, Sri Lanka', href: null },
   ];
 
   return (
-    <section id="contact" className="min-h-screen flex flex-col justify-center w-full relative z-10 py-10">
+    <section id="contact" className="min-h-[100svh] flex flex-col justify-center w-full relative z-10 pt-20 md:pt-10 pb-10">
       <style>{`
                 .ct-inner {
                     width: 100%;
                     max-width: 1350px;
                     margin: 0 auto;
-                    padding: 0 4rem;
+                    padding: 0 clamp(1rem, 5vw, 4rem);
                     box-sizing: border-box;
                 }
                 .ct-grid {
@@ -61,6 +61,16 @@ const Contact = () => {
                     padding: 2.8rem;
                     backdrop-filter: blur(16px);
                     -webkit-backdrop-filter: blur(16px);
+                }
+                @media (max-width: 640px) {
+                    .ct-glass { padding: 1.25rem 1rem; border-radius: 14px; }
+                    .ct-inner { padding: 0 0.75rem; }
+                    .ct-info-row { font-size: 0.75rem; margin-bottom: 0.8rem; }
+                    .ct-icon-wrap { width: 32px; height: 32px; border-radius: 8px; }
+                    .ct-social-btn { width: 36px; height: 36px; }
+                    .ct-input { font-size: 0.85rem; padding: 0.7rem 0.9rem; }
+                    .ct-btn { padding: 0.75rem; font-size: 0.85rem; box-sizing: border-box; }
+                    .ct-label { font-size: 0.7rem; }
                 }
                 .ct-label {
                     display: block;
@@ -103,6 +113,7 @@ const Contact = () => {
                     letter-spacing: 0.03em;
                     transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
                     box-shadow: 0 0 20px rgba(255,42,42,0.25);
+                    box-sizing: border-box;
                 }
                 .ct-btn:hover { background: #ff4a4a; box-shadow: 0 0 30px rgba(255,42,42,0.4); transform: translateY(-1px); }
                 .ct-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
@@ -151,8 +162,8 @@ const Contact = () => {
 
       <div className="ct-inner">
         {/* Heading */}
-        <div className="mb-8">
-          <h2 className="text-3xl md:text-5xl font-bold text-white">Let's Connect</h2>
+        <div className="mb-6 md:mb-8">
+          <h2 className="text-2xl md:text-5xl font-bold text-white">Let's Connect</h2>
         </div>
 
         <div className="ct-grid">
@@ -165,8 +176,8 @@ const Contact = () => {
             className="ct-glass flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-white font-bold text-2xl mb-3 border-l-4 border-[#ff2a2a] pl-3">Get in Touch</h3>
-              <p className="text-gray-400 text-base leading-relaxed mb-8">
+              <h3 className="text-white font-bold text-lg md:text-2xl mb-2 md:mb-3 border-l-4 border-[#ff2a2a] pl-3">Get in Touch</h3>
+              <p className="text-gray-400 text-[13px] md:text-base leading-relaxed mb-5 md:mb-8">
                 I'm open to new opportunities and collaborations. Have a project, question, or just want to say hi? I'll get back to you as soon as possible.
               </p>
 
@@ -187,24 +198,24 @@ const Contact = () => {
 
             <div>
               <p className="text-gray-500 text-sm uppercase tracking-widest mb-4 font-semibold">Social</p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3 sm:gap-4">
                 <a href="https://github.com/IT24101654" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="GitHub">
-                  <FaGithub size={22} />
+                  <FaGithub className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.linkedin.com/in/yasithhasarinda" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="LinkedIn">
-                  <FaLinkedin size={22} />
+                  <FaLinkedin className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.facebook.com/yasith.lathika" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Facebook">
-                  <FaFacebook size={22} />
+                  <FaFacebook className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.instagram.com/hasa_rinda" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Instagram">
-                  <FaInstagram size={22} />
+                  <FaInstagram className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.tiktok.com/@hase_24" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="TikTok">
-                  <FaTiktok size={22} />
+                  <FaTiktok className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://wa.me/94779114877" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="WhatsApp">
-                  <FaWhatsapp size={22} />
+                  <FaWhatsapp className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />
                 </a>
               </div>
             </div>

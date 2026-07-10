@@ -1,21 +1,25 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+/* Google Fonts are loaded via <link> in index.html for reliable Netlify delivery */
 
 @theme {
   --color-dark: #0a0a0a;
   --color-primary: #ff2a2a;
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Fira Code', monospace;
+  --navbar-h: 72px; /* desktop navbar height */
+  --navbar-h-mobile: 60px; /* mobile navbar height */
 }
 
 html {
+  font-size: 16px; /* Pin base font size — prevents Netlify/browser rendering drift */
   scroll-behavior: smooth;
 }
 
 body {
+  font-size: 16px;
   background-color: var(--color-dark);
   color: #ffffff;
-  font-family: var(--font-sans);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
   background-image: radial-gradient(circle at 50% 0%, rgba(255, 42, 42, 0.15), transparent 50%),
     radial-gradient(circle at 0% 100%, rgba(255, 42, 42, 0.05), transparent 50%);
@@ -102,4 +106,63 @@ html.lenis {
 
 .animate-shimmer {
   animation: shimmer 4s ease-in-out infinite;
+}
+
+/* ─── Scroll Snap Container ───────────────────────────────────── */
+.snap-container {
+  scroll-snap-type: y mandatory;
+}
+
+/* ─── Section Snap Wrappers ───────────────────────────────────── */
+/* Desktop: h-screen so Projects internal scroll works */
+.section-snap {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* About / Skills / Contact need min-h on desktop too since they can overflow */
+.section-about,
+.section-skills,
+.section-contact {
+  height: auto;
+  min-height: 100vh;
+}
+
+/* Projects gets h-screen on desktop so the card grid scrolls inside it */
+.section-projects {
+  height: 100vh;
+}
+
+/* Desktop: projects grid scrolls inside the h-screen section */
+.projects-grid-scroll {
+  overflow-y: auto;
+}
+
+/* ─── Mobile overrides (≤768px) ───────────────────────────────── */
+@media (max-width: 768px) {
+  /* Strict snap so sections always snap perfectly into place */
+  .snap-container {
+    scroll-snap-type: y mandatory;
+  }
+
+  /* On mobile all sections are auto-height, never fixed h-screen */
+  .section-projects,
+  .section-about,
+  .section-skills,
+  .section-contact {
+    height: auto;
+    min-height: 100svh;
+  }
+
+  /* Hero & HeroDetails stay full screen on mobile */
+  .section-snap.h-screen {
+    height: 100svh;
+  }
+
+  /* Projects grid: on mobile let it expand naturally (no internal scroll) */
+  .projects-grid-scroll {
+    overflow-y: visible;
+    flex: unset;
+    min-height: unset;
+  }
 }

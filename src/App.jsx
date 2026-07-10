@@ -12,6 +12,7 @@ import Contact from './components/Contact';
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSplineLoaded, setIsSplineLoaded] = useState(false);
+
   const handleLoaded = useCallback(() => setIsLoading(false), []);
 
   return (
@@ -31,14 +32,13 @@ export default function App() {
         }}
       />
 
-      {/* Main scrollable container — this is what useScroll tracks in Hero */}
+      {/* Main scrollable container */}
       <div
         id="snap-container"
-        className="bg-[#0a0a0a] text-white"
+        className="bg-[#0a0a0a] text-white snap-container"
         style={{
           height: '100vh',
           overflowY: 'scroll',
-          scrollSnapType: 'y mandatory',
           scrollBehavior: 'smooth',
           visibility: isLoading ? 'hidden' : 'visible',
         }}
@@ -47,32 +47,32 @@ export default function App() {
         <Navbar />
 
         {/* Section 1 – Hero */}
-        <div className="h-screen shrink-0 relative w-full" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <div className="section-snap h-screen shrink-0 relative w-full">
           <Hero isLoading={isLoading} onSplineLoadProp={() => setIsSplineLoaded(true)} />
         </div>
 
         {/* Section 1.5 - Hero Details */}
-        <div className="h-screen shrink-0 relative w-full" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <div className="section-snap h-screen shrink-0 relative w-full">
           <HeroDetails />
         </div>
 
         {/* Section 2 – About */}
-        <div className="min-h-screen shrink-0 relative w-full" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <div className="section-snap section-about shrink-0 relative w-full">
           <About />
         </div>
 
         {/* Section 3 – Projects */}
-        <div className="min-h-screen shrink-0 relative w-full" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <div className="section-snap section-projects shrink-0 relative w-full">
           <Projects />
         </div>
 
         {/* Section 4 – Skills */}
-        <div className="min-h-screen shrink-0 relative w-full" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <div className="section-snap section-skills shrink-0 relative w-full">
           <Skills />
         </div>
 
         {/* Section 5 – Contact */}
-        <div className="min-h-screen shrink-0 relative w-full" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+        <div className="section-snap section-contact shrink-0 relative w-full">
           <Contact />
         </div>
 

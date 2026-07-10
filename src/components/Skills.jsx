@@ -140,20 +140,30 @@ const Skills = () => {
     <>
       <style>{`
                 .skills-section {
-                    height: 100vh;
+                    min-height: 100vh;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
-                    padding: 0 0;
+                    padding: 3rem 0;
                     position: relative;
                     z-index: 10;
                     overflow: hidden;
                 }
+                @media (max-width: 768px) {
+                    .skills-section {
+                        padding-top: 5rem;
+                        padding-bottom: 3rem;
+                        justify-content: flex-start;
+                    }
+                }
                 .sk-inner {
                     width: 100%;
                     margin: 0 auto;
-                    padding: 0 13rem 0 13rem;
+                    padding: 0 clamp(1rem, 8vw, 13rem);
                     box-sizing: border-box;
+                }
+                @media (max-width: 480px) {
+                    .sk-inner { padding: 0 1rem; }
                 }
 
                 .sk-heading {
@@ -179,10 +189,14 @@ const Skills = () => {
                     grid-template-columns: 1fr 1fr;
                     gap: 1.4rem 4rem;
                 }
-                @media (max-width: 640px) {
-                    .sk-grid { grid-template-columns: 1fr; gap: 1rem; }
-                    .sk-title { font-size: 1.875rem; }
-                    .sk-num { font-size: 1.125rem; }
+                @media (max-width: 768px) {
+                    .sk-grid { gap: 1.2rem 1.5rem; }
+                    .sk-title { font-size: 2.25rem; }
+                }
+                @media (max-width: 480px) {
+                    .sk-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+                    .sk-title { font-size: 1.75rem; }
+                    .sk-num { font-size: 0.9rem; }
                 }
 
                 .sk-cat { }
@@ -256,10 +270,16 @@ const Skills = () => {
 
                 .sk-chips-row { gap: 0.65rem; }
 
+                @media (max-width: 768px) {
+                    .sk-chip-inner { width: 76px; height: 80px; }
+                    .sk-icon { width: 30px; height: 30px; }
+                }
+
                 @media (max-width: 480px) {
-                    .sk-chip-inner { width: 72px; height: 76px; }
-                    .sk-icon { width: 28px; height: 28px; }
-                    .sk-name { font-size: 0.58rem; }
+                    .sk-chips-row { gap: 0.45rem; }
+                    .sk-chip-inner { width: 62px; height: 68px; border-radius: 12px; gap: 0.3rem; }
+                    .sk-icon { width: 24px; height: 24px; }
+                    .sk-name { font-size: 0.5rem; }
                 }
             `}</style>
 

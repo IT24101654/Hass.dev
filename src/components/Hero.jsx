@@ -38,10 +38,11 @@ const Hero = ({ isLoading, onSplineLoadProp }) => {
   const isMobile = windowWidth < 768;
   const isTablet = windowWidth >= 768 && windowWidth <= 1024;
 
-  const initialScale = isMobile ? 1.2 : isTablet ? 0.8 : 1.1;
-  const finalScale = isMobile ? 1.5 : isTablet ? 1.8 : 4.5;
+  // Mobile: start smaller so the robot fits; desktop: keep original feel
+  const initialScale = isMobile ? 1.5 : isTablet ? 0.8 : 1.1;
+  const finalScale = isMobile ? 3.0 : isTablet ? 1.8 : 4.5;
 
-  const hassStrokeFontSize = isMobile ? '30vw' : isTablet ? '25vw' : '35vw';
+  const hassStrokeFontSize = isMobile ? '40vw' : isTablet ? '25vw' : '35vw';
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -69,7 +70,6 @@ const Hero = ({ isLoading, onSplineLoadProp }) => {
       onMouseLeave={() => setIsHovering(false)}
     >
 
-
       {/* Spotlight Background Text (Filled gradient, follows mouse) */}
       <div
         className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
@@ -91,7 +91,7 @@ const Hero = ({ isLoading, onSplineLoadProp }) => {
           </defs>
           <text
             x="50%"
-            y="50%"
+            y={isMobile ? "28%" : "50%"}
             dominantBaseline="central"
             textAnchor="middle"
             className="select-none"
@@ -109,7 +109,7 @@ const Hero = ({ isLoading, onSplineLoadProp }) => {
 
       <motion.div
         style={{ scale, y }}
-        className="absolute top-[-45vh] md:top-[-90vh] xl:top-[-45%] left-1/2 -translate-x-1/2 w-[300vw] xl:w-[140%] h-[300vw] xl:h-[150%] z-[1] pointer-events-auto origin-center"
+        className="absolute top-[-5vh] md:top-[-90vh] xl:top-[-45%] left-1/2 -translate-x-1/2 w-[180vw] md:w-[300vw] xl:w-[140%] h-[180vw] md:h-[300vw] xl:h-[150%] z-[1] pointer-events-auto origin-center"
       >
         <motion.div
           initial={{ scale: 1.8, opacity: 0 }}
@@ -140,7 +140,7 @@ const Hero = ({ isLoading, onSplineLoadProp }) => {
           </defs>
           <text
             x="50%"
-            y="50%"
+            y={isMobile ? "28%" : "50%"}
             dominantBaseline="central"
             textAnchor="middle"
             style={{
