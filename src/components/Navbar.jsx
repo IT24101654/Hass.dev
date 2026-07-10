@@ -46,18 +46,18 @@ function Navbar() {
   }, [mobileOpen]);
 
   const navLinks = [
-    { id: 'home',         label: 'Home' },
+    { id: 'home', label: 'Home' },
     { id: 'hero-details', label: 'Details' },
-    { id: 'about',        label: 'My Story' },
-    { id: 'projects',     label: 'Projects' },
-    { id: 'skills',       label: 'My Toolkit' },
-    { id: 'contact',      label: "Let's Connect" },
+    { id: 'about', label: 'My Story' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'skills', label: 'My Toolkit' },
+    { id: 'contact', label: "Let's Connect" },
   ];
 
   return (
     <>
       <nav className={`navbar${isScrolled ? ' scrolled' : ''}`}>
-        <div className="logo"><span>H</span>ass.dev</div>
+        <div className="logo"><span>H</span>ass.Dev</div>
 
         <ul className="nav-links">
           {navLinks.map(({ id, label }) => (

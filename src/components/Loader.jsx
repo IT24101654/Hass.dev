@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const DISPLAY_NAME = 'Hass.dev';
+const DISPLAY_NAME = 'Hass.Dev';
 const TAGLINE = 'Full Stack Developer';
 
 export default function Loader({ onLoaded, isSplineLoaded }) {
