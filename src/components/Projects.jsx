@@ -39,6 +39,7 @@ const PROJECTS = [
     title: 'Parkify — Web',
     tagline: 'Smart parking management platform',
     description: 'A full-stack web app that lets drivers find, view, and book parking spots on an interactive Google Maps interface. Parking space owners get a dashboard to manage listings; admins oversee the whole platform. Built with the MERN stack and deployed on Render.',
+    notice: 'Figma prototype may have glitches. Please start from the "Main Interface" screen. For the full experience, use the Live Website and register as a Driver/Parking Owner.',
     highlights: ['Google Maps integration with real-time availability', 'JWT authentication for three user roles', 'Owner dashboard with booking analytics', 'REST API consumed by both web and mobile clients'],
     cardImg: parkifyC, popupImg: parkifyP,
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Google Maps API', 'JWT'],
@@ -339,6 +340,18 @@ function Modal({ project, onClose }) {
                 </a>
               )}
             </div>
+
+            {/* Notice (if any) */}
+            {project.notice && (
+              <div className="mt-5 md:mt-6 bg-orange-500/10 border border-orange-500/20 rounded-lg p-3 sm:p-4">
+                <div className="flex items-start gap-3">
+                  <span className="text-orange-500 text-lg mt-0.5" aria-hidden="true">⚠️</span>
+                  <p className="text-orange-400 text-xs sm:text-sm leading-relaxed">
+                    <strong className="text-orange-500 font-semibold">Note:</strong> {project.notice}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </motion.div>
