@@ -33,7 +33,7 @@ const Contact = () => {
 
   const infoItems = [
     { icon: <FiMail className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />, text: 'yasith.hasarinda2003@gmail.com', href: 'mailto:yasith.hasarinda2003@gmail.com' },
-    { icon: <FiMapPin className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />, text: 'Ampara, Sri Lanka', href: null },
+    { icon: <FiMapPin className="w-[16px] h-[16px] sm:w-[22px] sm:h-[22px]" />, text: 'Ampara, Sri Lanka', href: 'https://www.google.com/maps/place/Ampara,+Sri+Lanka' },
   ];
 
   return (
@@ -208,7 +208,7 @@ const Contact = () => {
                 <a href="https://www.facebook.com/yasith.lathika" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Facebook">
                   <FaFacebook className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
                 </a>
-                <a href="https://www.instagram.com/hasa_rinda" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Instagram">
+                <a href="https://www.instagram.com/hasa__rinda" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Instagram">
                   <FaInstagram className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.tiktok.com/@hase_24" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="TikTok">
