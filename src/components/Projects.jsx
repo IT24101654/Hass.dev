@@ -31,7 +31,7 @@ const PROJECTS = [
     cardImg: hassDevC, popupImg: hassDevP,
     tech: ['React', 'Tailwind CSS', 'Framer Motion', 'Spline'],
     github: 'https://github.com/IT24101654/Hass.dev',
-    live: null,
+    live: 'https://main.d1vv087i13in11.amplifyapp.com',
     accent: '#ec4899',
   },
   {
