@@ -30,6 +30,11 @@ function Navbar() {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
             setIsScrolled(entry.target.id !== 'home');
+            // Update URL hash without causing page jump
+            const hash = '#' + entry.target.id;
+            if (window.location.hash !== hash) {
+              window.history.replaceState(null, '', hash);
+            }
           }
         });
       },
