@@ -140,9 +140,14 @@ html.lenis {
 
 /* ─── Mobile overrides (≤768px) ───────────────────────────────── */
 @media (max-width: 768px) {
-  /* Strict snap so sections always snap perfectly into place */
+  /* Use proximity snap so tall sections can be fully scrolled, but pages gently align */
   .snap-container {
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
+  }
+  
+  .section-snap {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
   }
 
   /* On mobile all sections are auto-height, never fixed h-screen */
