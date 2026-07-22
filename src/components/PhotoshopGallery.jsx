@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiChevronLeft, FiChevronRight, FiZoomIn } from 'react-icons/fi';
 
 import bgSarees from '../../Photoshop/Backround sarees.jpg';
-import comingSoon from '../../Photoshop/Coming soon post.jpg';
+import comingSoon from '../../Photoshop/Coming soon Post.jpg';
 import happyNewYear from '../../Photoshop/HAPPY NEW YEAR.jpg';
 import hbd from '../../Photoshop/HBD.jpg';
 import newYearPost from '../../Photoshop/New year post.jpg';
