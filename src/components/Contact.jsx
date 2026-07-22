@@ -38,7 +38,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="has-noise min-h-fit md:min-h-[100svh] flex flex-col justify-center w-full relative z-10 pt-20 md:pt-10 pb-3 md:pb-10 overflow-hidden">
+    <section id="contact" className="has-noise min-h-fit md:min-h-[100svh] flex flex-col justify-center w-full relative z-10 pt-20 md:pt-10 pb-24 md:pb-10 overflow-hidden">
 
       {/* ── HUGE BACKGROUND WATERMARK TEXT (Behind Person) ── */}
       <div className="absolute right-0 top-0 bottom-0 pointer-events-none select-none z-0 overflow-hidden flex flex-col justify-center" style={{ width: '60%' }}>
@@ -299,8 +299,8 @@ const Contact = () => {
               <button className="ct-btn" type="submit" disabled={status === 'sending'}>
                 {status === 'sending' ? 'Sending…' : 'Send Message →'}
               </button>
-              {status === 'sent' && <p className="text-green-400 text-sm text-center">✓ Message sent! I'll get back to you soon.</p>}
-              {status === 'error' && <p className="text-red-400 text-sm text-center">✗ Something went wrong. Try again or email directly.</p>}
+              {status === 'sent' && <p className="absolute -bottom-6 left-0 w-full text-green-400 text-sm text-center">✓ Message sent! I'll get back to you soon.</p>}
+              {status === 'error' && <p className="absolute -bottom-6 left-0 w-full text-red-400 text-sm text-center">✗ Something went wrong. Try again or email directly.</p>}
             </form>
           </motion.div>
         </div>
