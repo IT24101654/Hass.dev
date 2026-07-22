@@ -11,12 +11,12 @@
 }
 
 html {
-  font-size: 16px; /* Pin base font size — prevents Netlify/browser rendering drift */
+  font-size: 14.5px; /* Scaled down base font size to make the UI look like 90% zoom */
   /* Note: scroll-behavior lives on the snap-container, not html, to avoid conflicting smooth-scroll */
 }
 
 body {
-  font-size: 16px;
+  font-size: 14.5px;
   background-color: var(--color-dark);
   color: #ffffff;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

@@ -177,12 +177,12 @@ function Card({ project, onOpen, index, layout }) {
 
   // Compute responsive classes cleanly to prevent 'md' styles leaking into 'xl' when layout changes
   const flexDirClass = `flex-col ${isWideMD ? 'md:flex-row' : 'md:flex-col'} ${isWideXL ? 'xl:flex-row' : 'xl:flex-col'}`;
-  const imgContainerClass = `${isWideMD ? 'md:w-[45%] md:h-auto' : 'md:w-full md:h-[240px]'} ${isWideXL ? 'xl:w-[40%] xl:h-auto' : 'xl:w-full xl:h-[190px]'}`;
+  const imgContainerClass = `${isWideMD ? 'md:w-[45%] md:h-auto' : 'md:w-full md:h-[200px]'} ${isWideXL ? 'xl:w-[40%] xl:h-auto' : 'xl:w-full xl:h-[170px]'}`;
   const imgGradientClass = `${isWideMD ? 'md:bg-gradient-to-r md:from-transparent md:via-[#0a0a0a]/40 md:to-[#0a0a0a]' : 'md:bg-gradient-to-t md:from-[#0a0a0a] md:via-[#0a0a0a]/40 md:to-transparent'} ${isWideXL ? 'xl:bg-gradient-to-r xl:from-transparent xl:via-[#0a0a0a]/40 xl:to-[#0a0a0a]' : 'xl:bg-gradient-to-t xl:from-[#0a0a0a] xl:via-[#0a0a0a]/40 xl:to-transparent'}`;
   const phoneFrameClass = `transform scale-[0.7] origin-center transition-transform duration-300 group-hover:scale-[0.75] ${isWideMD ? 'md:mt-0' : 'mt-12'} ${isWideXL ? 'xl:mt-0' : 'xl:mt-12'}`;
-  const contentPaddingClass = `p-6 md:p-8 ${isWideMD ? 'md:mt-0 md:justify-center md:pl-6' : '-mt-10 sm:-mt-12 md:-mt-12 md:pl-8'} ${isWideXL ? 'xl:mt-0 xl:justify-center xl:px-10' : 'xl:-mt-12 xl:px-8 xl:justify-start'}`;
-  const titleClass = `${isWideMD ? 'md:text-3xl' : 'md:text-2xl'} ${isWideXL ? 'xl:text-3xl xl:mb-3' : 'xl:text-2xl xl:mb-2'}`;
-  const descClass = `${isWideMD ? 'md:line-clamp-none md:text-base' : 'line-clamp-4 md:text-sm'} ${isWideXL ? 'xl:line-clamp-5 xl:text-base xl:mb-6' : 'xl:line-clamp-4 xl:text-sm xl:mb-6'}`;
+  const contentPaddingClass = `p-5 md:p-6 ${isWideMD ? 'md:mt-0 md:justify-center md:pl-5' : '-mt-10 sm:-mt-12 md:-mt-12 md:pl-6'} ${isWideXL ? 'xl:mt-0 xl:justify-center xl:px-8' : 'xl:-mt-12 xl:px-6 xl:justify-start'}`;
+  const titleClass = `${isWideMD ? 'md:text-2xl' : 'md:text-xl'} ${isWideXL ? 'xl:text-2xl xl:mb-2' : 'xl:text-xl xl:mb-1.5'}`;
+  const descClass = `${isWideMD ? 'md:line-clamp-none md:text-sm' : 'line-clamp-4 md:text-[13px]'} ${isWideXL ? 'xl:line-clamp-5 xl:text-sm xl:mb-5' : 'xl:line-clamp-4 xl:text-[13px] xl:mb-5'}`;
 
   return (
     <motion.article
@@ -233,11 +233,11 @@ function Card({ project, onOpen, index, layout }) {
           </p>
         </div>
 
-        <h3 className={`text-white font-bold text-xl sm:text-2xl mb-2 flex items-center gap-3 ${titleClass}`}>
+        <h3 className={`text-white font-bold text-lg sm:text-xl mb-2 flex items-center gap-3 ${titleClass}`}>
           {project.title}
         </h3>
 
-        <p className={`text-gray-400 text-sm leading-relaxed mb-6 font-light ${descClass}`}>
+        <p className={`text-gray-400 text-[13px] leading-relaxed mb-5 font-light ${descClass}`}>
           {project.description}
         </p>
 
@@ -552,7 +552,7 @@ export default function Projects() {
       </div>
       */}
 
-      <div className="max-w-[1500px] mx-auto px-3 sm:px-8 lg:px-14 flex flex-col flex-1 min-h-0 w-full pb-4 sm:pb-6 relative z-10">
+      <div className="max-w-[1380px] mx-auto px-3 sm:px-8 lg:px-14 flex flex-col flex-1 min-h-0 w-full pb-4 sm:pb-6 relative z-10">
 
         {/* Heading */}
         <motion.div {...fadeUp()} className="mb-4 sm:mb-5 flex-shrink-0">
@@ -615,7 +615,7 @@ export default function Projects() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.25 }}
-              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8 grid-flow-row-dense"
+              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 md:gap-6 grid-flow-row-dense"
             >
               {filtered.map((p, i) => (
                 <Card key={p.id} project={p} onOpen={open} index={i} layout={getGridLayout(i)} />

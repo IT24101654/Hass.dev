@@ -206,7 +206,7 @@ export default function PhotoshopGallery() {
 
         <div className="relative z-10 w-full h-full flex flex-col md:flex-row">
           {/* ── LEFT: Section label ── */}
-          <div className="flex-shrink-0 flex flex-col justify-center items-center md:items-start text-center md:text-left pl-0 sm:pl-12 lg:pl-16 w-full md:w-[30%] pt-20 md:pt-0 pb-4 md:pb-0 md:min-w-[220px]">
+          <div className="flex-shrink-0 flex flex-col justify-center items-center md:items-start text-center md:text-left pl-0 sm:pl-12 lg:pl-16 w-full md:w-[30%] pt-20 md:pt-0 pb-1 md:pb-0 md:min-w-[220px]">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={visible ? { opacity: 1, x: 0 } : {}}
@@ -237,9 +237,9 @@ export default function PhotoshopGallery() {
           </div>
 
           {/* ── RIGHT: Poster cards — Clean Modern Grid ── */}
-          <div className="flex-1 flex flex-col justify-start pt-4 md:pt-24 px-4 md:px-0 md:pr-10 lg:pr-14 h-full">
+          <div className="flex-1 flex flex-col justify-start pt-1 md:pt-24 px-4 md:px-0 md:pr-10 lg:pr-14 h-full">
             {/* Tabs (Fixed Position) */}
-            <div className="flex-shrink-0 flex items-center justify-center gap-1 sm:gap-2 mb-6 sm:mb-8 bg-white/[0.04] p-1 sm:p-1.5 rounded-[10px] sm:rounded-xl border border-white/10 w-fit mx-auto backdrop-blur-md">
+            <div className="flex-shrink-0 flex items-center justify-center gap-1 sm:gap-2 mb-3 sm:mb-8 bg-white/[0.04] p-1 sm:p-1.5 rounded-[10px] sm:rounded-xl border border-white/10 w-fit mx-auto backdrop-blur-md">
               {['all', 'photoshop', 'illustrator'].map((tab) => (
                 <button
                   key={tab}

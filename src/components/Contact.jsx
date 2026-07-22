@@ -69,14 +69,6 @@ const Contact = () => {
         </motion.div>
       </div>
 
-      {/* ── BACKGROUND IMAGE (Person from Intro) ── */}
-      <div className="absolute inset-0 w-full h-full z-20 pointer-events-none overflow-hidden">
-        <img
-          src={personImg}
-          alt="Background Person"
-          className="absolute top-[10.8%] md:top-auto bottom-auto md:bottom-[-10vh] right-[-33%] md:right-[-9%] xl:right-[-39.5%] h-[40vh] md:h-[105vh] w-auto max-w-none object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] scale-x-[-1] md:scale-x-100"
-        />
-      </div>
       <style>{`
                 .ct-inner {
                     position: relative;
@@ -281,9 +273,17 @@ const Contact = () => {
             animate={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="ct-glass"
+            className="ct-glass relative"
           >
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {/* ── BACKGROUND IMAGE (Person from Intro) ── */}
+            <div className="absolute inset-0 w-full h-full z-20 pointer-events-none overflow-visible">
+              <img
+                src={personImg}
+                alt="Background Person"
+                className="absolute top-[auto] bottom-[100%] md:bottom-[-30%] right-[-40%] md:right-[-35%] xl:right-[-206%] h-[90%] md:h-[155%] w-auto max-w-none object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] scale-x-[-1] md:scale-x-100 pointer-events-none"
+              />
+            </div>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 relative z-30">
               <div>
                 <label className="ct-label">Name</label>
                 <input className="ct-input" type="text" name="name" placeholder="Your name" value={formData.name} onChange={handleChange} required />

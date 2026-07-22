@@ -283,10 +283,10 @@ const Skills = () => {
                 }
 
                 @media (max-width: 480px) {
-                    .sk-chips-row { gap: 0.4rem; }
-                    .sk-chip-inner { width: 54px; height: 60px; border-radius: 10px; gap: 0.25rem; }
-                    .sk-icon { width: 20px; height: 20px; }
-                    .sk-name { font-size: 0.45rem; }
+                    .sk-chips-row { gap: 0.5rem; }
+                    .sk-chip-inner { width: 60px; height: 66px; border-radius: 10px; gap: 0.35rem; }
+                    .sk-icon { width: 22px; height: 22px; }
+                    .sk-name { font-size: 0.5rem; }
                 }
             `}</style>
 

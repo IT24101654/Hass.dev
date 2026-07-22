@@ -118,17 +118,17 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="flex flex-col justify-center text-center lg:text-left mt-4 lg:mt-0 max-w-3xl"
           >
-            <p className="text-white font-bold text-xl lg:text-2xl mb-1 italic">Yasith Lathika</p>
-            <h2 className="text-white font-black text-[clamp(2.8rem,11.5vw,4.5rem)] lg:text-[6rem] leading-[0.85] tracking-tighter mb-4">
+            <p className="text-white font-bold text-lg lg:text-xl mb-1 italic">Yasith Lathika</p>
+            <h2 className="text-white font-black text-[clamp(2.5rem,10vw,4rem)] lg:text-[5rem] leading-[0.85] tracking-tighter mb-4">
               HASARINDA
             </h2>
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 text-white text-lg font-bold italic mb-6">
-              <span className="text-[#ff2a2a] text-xl">2003</span>
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5 text-white text-base font-bold italic mb-6">
+              <span className="text-[#ff2a2a] text-lg">2003</span>
               <span className="hidden sm:inline text-white/20">|</span>
               <span className="font-semibold text-gray-300 tracking-wide">Full Stack Developer</span>
             </div>
 
-            <p className="text-gray-300 text-[14px] sm:text-[16px] lg:text-[17px] leading-relaxed max-w-3xl mx-auto lg:mx-0 px-2 sm:px-0">
+            <p className="text-gray-300 text-[13px] sm:text-[14px] lg:text-[15px] leading-relaxed max-w-3xl mx-auto lg:mx-0 px-2 sm:px-0">
               Hello, I'm Yasith - a software developer and designer passionate about building experiences that inspire. Born in 2003, I began my journey exploring the intersection of technology and creativity.              I'm currently a <strong className="text-white font-bold">BSc (Hons) IT</strong> undergraduate at SLIIT,
               passionate about <strong className="text-white font-bold">Full Stack Dev, AI, and Software Engineering</strong>.
               <br /><br />
@@ -155,19 +155,19 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           animate={visible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16 px-4 max-w-[1200px] mx-auto w-full"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 px-4 max-w-[1200px] mx-auto w-full"
         >
           {/* EXPERIENCE */}
           <div>
-            <h3 className="text-white font-black text-xl uppercase mb-5 tracking-widest">JOURNEY</h3>
+            <h3 className="text-white font-black text-lg uppercase mb-4 tracking-widest">JOURNEY</h3>
             <div className="space-y-3">
-              <p className="text-gray-200 text-[14px] font-medium">
+              <p className="text-gray-200 text-[13px] font-medium">
                 - Full Stack Developer <span className="text-gray-500 font-normal">( 2024 - Current )</span>
               </p>
-              <p className="text-gray-200 text-[14px] font-medium">
+              <p className="text-gray-200 text-[13px] font-medium">
                 - Graphic Designer <span className="text-gray-500 font-normal">( 2023 - Current )</span>
               </p>
-              <p className="text-gray-200 text-[14px] font-medium">
+              <p className="text-gray-200 text-[13px] font-medium">
                 - SLIIT Undergraduate <span className="text-gray-500 font-normal">( 2024 - Current )</span>
               </p>
             </div>
@@ -175,25 +175,25 @@ export default function About() {
 
           {/* PROFILE */}
           <div>
-            <h3 className="text-white font-black text-xl uppercase mb-5 tracking-widest">Profile</h3>
+            <h3 className="text-white font-black text-lg uppercase mb-4 tracking-widest">Profile</h3>
             <div className="space-y-3">
-              <p className="text-gray-200 text-[14px] font-medium">- Full Name - <span className="text-gray-400">Yasith Lathika Hasarinda</span></p>
-              <p className="text-gray-200 text-[14px] font-medium">- Location - <span className="text-gray-400">Sri Lanka</span></p>
-              <p className="text-gray-200 text-[14px] font-medium">- Degree - <span className="text-gray-400">BSc (Hons) IT</span></p>
+              <p className="text-gray-200 text-[13px] font-medium">- Full Name - <span className="text-gray-400">Yasith Lathika Hasarinda</span></p>
+              <p className="text-gray-200 text-[13px] font-medium">- Location - <span className="text-gray-400">Sri Lanka</span></p>
+              <p className="text-gray-200 text-[13px] font-medium">- Degree - <span className="text-gray-400">BSc (Hons) IT</span></p>
             </div>
           </div>
 
           {/* CONTACTS */}
           <div>
-            <h3 className="text-white font-black text-xl uppercase mb-5 tracking-widest">Contacts</h3>
+            <h3 className="text-white font-black text-lg uppercase mb-4 tracking-widest">Contacts</h3>
             <div className="space-y-3">
-              <a href="mailto:yasith.hasarinda2003@gmail.com" className="block text-gray-200 hover:text-[#ff2a2a] transition-colors text-[14px] font-medium">
+              <a href="mailto:yasith.hasarinda2003@gmail.com" className="block text-gray-200 hover:text-[#ff2a2a] transition-colors text-[13px] font-medium">
                 - yasith.hasarinda2003@gmail.com
               </a>
-              <a href="https://github.com/IT24101654" target="_blank" rel="noopener noreferrer" className="block text-gray-200 hover:text-[#ff2a2a] transition-colors text-[14px] font-medium">
+              <a href="https://github.com/IT24101654" target="_blank" rel="noopener noreferrer" className="block text-gray-200 hover:text-[#ff2a2a] transition-colors text-[13px] font-medium">
                 - github.com/IT24101654
               </a>
-              <a href="https://www.linkedin.com/in/yasithhasarinda" target="_blank" rel="noopener noreferrer" className="block text-gray-200 hover:text-[#ff2a2a] transition-colors text-[14px] font-medium">
+              <a href="https://www.linkedin.com/in/yasithhasarinda" target="_blank" rel="noopener noreferrer" className="block text-gray-200 hover:text-[#ff2a2a] transition-colors text-[13px] font-medium">
                 - linkedin.com/in/yasithhasarinda
               </a>
             </div>
