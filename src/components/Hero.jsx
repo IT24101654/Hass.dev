@@ -112,8 +112,8 @@ const Hero = ({ isLoading, onSplineLoadProp }) => {
         className="absolute top-[-5vh] md:top-[-90vh] xl:top-[-45%] left-1/2 -translate-x-1/2 w-[180vw] md:w-[300vw] xl:w-[140%] h-[180vw] md:h-[300vw] xl:h-[150%] z-[1] pointer-events-auto origin-center"
       >
         <motion.div
-          initial={{ scale: 1.8, opacity: 0 }}
-          animate={isLoading ? { scale: 1.8, opacity: 0 } : { scale: 1, opacity: 1 }}
+          initial={{ scale: 1.8, opacity: 1 }}
+          animate={isLoading ? { scale: 1.8, opacity: 1 } : { scale: 1, opacity: 1 }}
           transition={{ duration: 2.5, ease: "easeOut" }}
           className="w-full h-full"
         >

@@ -12,7 +12,7 @@
 
 html {
   font-size: 16px; /* Pin base font size — prevents Netlify/browser rendering drift */
-  scroll-behavior: smooth;
+  /* Note: scroll-behavior lives on the snap-container, not html, to avoid conflicting smooth-scroll */
 }
 
 body {
@@ -21,9 +21,10 @@ body {
   color: #ffffff;
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
+  /* background-attachment:fixed removed — it forces a full repaint on every scroll frame
+     and is one of the most common causes of scroll jank. Using a fixed pseudo-element instead. */
   background-image: radial-gradient(circle at 50% 0%, rgba(255, 42, 42, 0.15), transparent 50%),
     radial-gradient(circle at 0% 100%, rgba(255, 42, 42, 0.05), transparent 50%);
-  background-attachment: fixed;
 }
 
 .glass {
@@ -32,6 +33,8 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
+  /* Isolate paint without creating a new stacking context */
+  contain: paint;
 }
 
 .text-gradient {
@@ -138,6 +141,12 @@ html.lenis {
   overflow-y: auto;
 }
 
+/* Gallery / new content sections — auto height, at least full screen */
+.section-gallery {
+  height: auto;
+  min-height: 100vh;
+}
+
 /* ─── Mobile overrides (≤768px) ───────────────────────────────── */
 @media (max-width: 768px) {
   /* Use proximity snap so tall sections can be fully scrolled, but pages gently align */
@@ -154,7 +163,8 @@ html.lenis {
   .section-projects,
   .section-about,
   .section-skills,
-  .section-contact {
+  .section-contact,
+  .section-gallery {
     height: auto;
     min-height: 100svh;
   }
@@ -170,4 +180,47 @@ html.lenis {
     flex: unset;
     min-height: unset;
   }
+}
+
+/* ─── Noise Texture Overlay ───────────────────────────────────── */
+/* SVG-based noise grain — applied as ::before on sections with .has-noise */
+.has-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+  /* Hardware acceleration to fix scroll lag */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ─── Section Background Ghost Text ──────────────────────────── */
+.section-bg-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  select: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.section-bg-text span {
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.04);
+  font-size: clamp(80px, 18vw, 220px);
+  line-height: 1;
+  user-select: none;
 }

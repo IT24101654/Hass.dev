@@ -3,10 +3,11 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FaFacebook, FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa6';
 import { FiMail, FiMapPin } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import personImg from '../assets/My_transparent_1.png';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState(null); 
+  const [status, setStatus] = useState(null);
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,41 +38,79 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="min-h-[100svh] flex flex-col justify-center w-full relative z-10 pt-20 md:pt-10 pb-10">
+    <section id="contact" className="has-noise min-h-fit md:min-h-[100svh] flex flex-col justify-center w-full relative z-10 pt-20 md:pt-10 pb-3 md:pb-10 overflow-hidden">
+
+      {/* ── HUGE BACKGROUND WATERMARK TEXT (Behind Person) ── */}
+      <div className="absolute right-0 top-0 bottom-0 pointer-events-none select-none z-0 overflow-hidden flex flex-col justify-center" style={{ width: '60%' }}>
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="flex flex-col whitespace-nowrap text-right"
+          style={{
+            fontFamily: '"Bebas Neue", sans-serif',
+            fontSize: 'clamp(4rem, 14vw, 22rem)',
+            fontWeight: 900,
+            lineHeight: 0.85,
+            letterSpacing: '10px',
+            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+            background: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'3\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\' opacity=\'0.08\'/%3E%3C/svg%3E"), rgba(255, 255, 255, 0.04)',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            color: 'transparent',
+            transform: 'translateX(5%)',
+          }}
+        >
+          <span>GET</span>
+          <span>IN</span>
+          <span>TOUCH</span>
+        </motion.div>
+      </div>
+
+      {/* ── BACKGROUND IMAGE (Person from Intro) ── */}
+      <div className="absolute inset-0 w-full h-full z-20 pointer-events-none overflow-hidden">
+        <img
+          src={personImg}
+          alt="Background Person"
+          className="absolute top-[10.8%] md:top-auto bottom-auto md:bottom-[-10vh] right-[-33%] md:right-[-9%] xl:right-[-39.5%] h-[40vh] md:h-[105vh] w-auto max-w-none object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)] scale-x-[-1] md:scale-x-100"
+        />
+      </div>
       <style>{`
                 .ct-inner {
+                    position: relative;
+                    z-index: 10;
                     width: 100%;
-                    max-width: 1350px;
-                    margin: 0 auto;
-                    padding: 0 clamp(1rem, 5vw, 4rem);
+                    max-width: 1000px;
+                    margin: 0;
+                    margin-left: clamp(1rem, 12vw, 12vw);
+                    padding: 0;
                     box-sizing: border-box;
                 }
                 .ct-grid {
                     display: grid;
-                    grid-template-columns: 1fr 1.4fr;
-                    gap: 2rem;
+                    grid-template-columns: 1fr 1.1fr;
+                    gap: 2.5rem;
                 }
                 @media (max-width: 768px) {
                     .ct-grid { grid-template-columns: 1fr; }
                 }
                 .ct-glass {
-                    background: rgba(255,255,255,0.03);
-                    border: 1px solid rgba(255,255,255,0.08);
+                    position: relative;
+                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
+                    border: 0px solid rgba(255, 255, 255, 0.05);
+                    border-top: 0px solid rgba(255, 255, 255, 0.3);
+                    border-left: 0px solid rgba(255, 255, 255, 0.2);
                     border-radius: 24px;
-                    padding: 2rem;
-                    backdrop-filter: blur(16px);
-                    -webkit-backdrop-filter: blur(16px);
+                    padding: 2.5rem;
+                    backdrop-filter: blur(20px);
+                    -webkit-backdrop-filter: blur(20px);
+                    transform: translate(-10px, -10px);
+                    z-index: 10;
+                    box-shadow: ${Array.from({ length: 60 }).map((_, i) => i === 0 ? '1px 1px 0 rgba(255,255,255,0.15)' : `${i + 1}px ${i + 1}px 0 rgba(5, 5, 5, ${0.05 * (1 - i / 60)})`).join(', ')}, 60px 60px 40px rgba(0,0,0,0.6);
                 }
-                @media (max-width: 640px) {
-                    .ct-glass { padding: 1.25rem 1rem; border-radius: 14px; }
-                    .ct-inner { padding: 0 0.75rem; }
-                    .ct-info-row { font-size: 0.75rem; margin-bottom: 0.8rem; }
-                    .ct-icon-wrap { width: 32px; height: 32px; border-radius: 8px; }
-                    .ct-social-btn { width: 32px; height: 32px; }
-                    .ct-input { font-size: 0.85rem; padding: 0.7rem 0.9rem; }
-                    .ct-btn { padding: 0.75rem; font-size: 0.85rem; box-sizing: border-box; }
-                    .ct-label { font-size: 0.7rem; }
-                }
+
                 .ct-label {
                     display: block;
                     color: rgba(255,255,255,0.45);
@@ -158,27 +197,42 @@ const Contact = () => {
                     border-color: rgba(255,42,42,0.3);
                     color: #ff2a2a;
                 }
+
+                @media (max-width: 640px) {
+                    .ct-grid { gap: 1rem; }
+                    .ct-glass { padding: 1rem 0.75rem; border-radius: 12px; transform: translate(0, 0); }
+                    .ct-inner { padding: 0 1rem; margin-left: 0; }
+                    .ct-info-row { font-size: 0.8rem; margin-bottom: 0.5rem; gap: 0.5rem; }
+                    .ct-icon-wrap { width: 36px; height: 36px; border-radius: 8px; }
+                    .ct-social-btn { width: 36px; height: 36px; }
+                    .ct-input { font-size: 0.8rem; padding: 0.6rem 0.8rem; }
+                    .ct-btn { padding: 0.65rem; font-size: 0.8rem; box-sizing: border-box; }
+                    .ct-label { font-size: 0.65rem; margin-bottom: 0.3rem; }
+                }
             `}</style>
 
       <div className="ct-inner">
         {/* Heading */}
         <div className="mb-6 md:mb-8">
-          <h2 className="text-2xl md:text-4xl font-bold text-white">Let's Connect</h2>
+          <h2 className="font-black text-white uppercase leading-none tracking-tight"
+            style={{ fontSize: 'clamp(2.5rem,3.5vw,5rem)', lineHeight: 0.88 }}>Let's Connect</h2>
         </div>
 
         <div className="ct-grid">
           {/* Left — info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="ct-glass flex flex-col justify-between"
           >
             <div>
-              <h3 className="text-white font-bold text-lg md:text-xl mb-2 md:mb-3 border-l-4 border-[#ff2a2a] pl-3">Get in Touch</h3>
-              <p className="text-gray-400 text-[13px] md:text-sm leading-relaxed mb-5 md:mb-8">
-                I'm open to new opportunities and collaborations. Have a project, question, or just want to say hi? I'll get back to you as soon as possible.
+              <h3 className="text-white font-bold text-base md:text-xl mb-2 md:mb-3 border-l-4 border-[#ff2a2a] pl-2 md:pl-3">Get in Touch</h3>
+              <p className="text-gray-400 text-[11px] md:text-sm leading-relaxed mb-4 md:mb-8">
+                I'm open to new opportunities and collaborations. <br />
+                Have a project, question, or just want to say hi? <br />
+                I'll get back to you as soon as possible.
               </p>
 
               {infoItems.map((item, i) =>
@@ -197,25 +251,25 @@ const Contact = () => {
             </div>
 
             <div>
-              <p className="text-gray-500 text-sm uppercase tracking-widest mb-4 font-semibold">Social</p>
-              <div className="flex flex-wrap gap-2 sm:gap-4">
+              <p className="text-gray-500 text-[10px] md:text-sm uppercase tracking-widest mb-3 md:mb-4 font-semibold">Social</p>
+              <div className="flex flex-wrap gap-1.5 sm:gap-4">
                 <a href="https://github.com/IT24101654" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="GitHub">
-                  <FaGithub className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
+                  <FaGithub className="w-[12px] h-[12px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.linkedin.com/in/yasithhasarinda" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="LinkedIn">
-                  <FaLinkedin className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
+                  <FaLinkedin className="w-[12px] h-[12px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.facebook.com/yasith.lathika" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Facebook">
-                  <FaFacebook className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
+                  <FaFacebook className="w-[12px] h-[12px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.instagram.com/hasa__rinda" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="Instagram">
-                  <FaInstagram className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
+                  <FaInstagram className="w-[12px] h-[12px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://www.tiktok.com/@hase_24" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="TikTok">
-                  <FaTiktok className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
+                  <FaTiktok className="w-[12px] h-[12px] sm:w-[22px] sm:h-[22px]" />
                 </a>
                 <a href="https://wa.me/94779114877" target="_blank" rel="noopener noreferrer" className="ct-social-btn" title="WhatsApp">
-                  <FaWhatsapp className="w-[14px] h-[14px] sm:w-[22px] sm:h-[22px]" />
+                  <FaWhatsapp className="w-[12px] h-[12px] sm:w-[22px] sm:h-[22px]" />
                 </a>
               </div>
             </div>
@@ -224,7 +278,7 @@ const Contact = () => {
           {/* Right — form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="ct-glass"

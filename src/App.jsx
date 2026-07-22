@@ -1,15 +1,19 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import HeroDetails from './components/HeroDetails';
 import About from './components/About';
 import Projects from './components/Projects';
+import PhotoshopGallery from './components/PhotoshopGallery';
+import HobbySection from './components/HobbySection';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 
-export default function App() {
+const JarvisPage = lazy(() => import('./pages/JarvisPage'));
+
+function Portfolio() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSplineLoaded, setIsSplineLoaded] = useState(false);
 
@@ -42,20 +46,21 @@ export default function App() {
           overflowX: 'hidden',
           scrollBehavior: 'smooth',
           visibility: isLoading ? 'hidden' : 'visible',
+          /* will-change hints the GPU without creating a new stacking context
+             (transform:translateZ(0) was removed — it breaks position:fixed children like Navbar) */
+          willChange: 'scroll-position',
         }}
         aria-hidden={isLoading}
       >
         <Navbar />
+
 
         {/* Section 1 – Hero */}
         <div className="section-snap h-screen shrink-0 relative w-full">
           <Hero isLoading={isLoading} onSplineLoadProp={() => setIsSplineLoaded(true)} />
         </div>
 
-        {/* Section 1.5 - Hero Details */}
-        <div className="section-snap h-screen shrink-0 relative w-full">
-          <HeroDetails />
-        </div>
+
 
         {/* Section 2 – About */}
         <div className="section-snap section-about shrink-0 relative w-full">
@@ -67,12 +72,22 @@ export default function App() {
           <Projects />
         </div>
 
-        {/* Section 4 – Skills */}
+        {/* Section 4 – Graphic Gallery (Photoshop + Illustrator) */}
+        <div className="section-snap section-gallery shrink-0 relative w-full">
+          <PhotoshopGallery />
+        </div>
+
+        {/* Section 5 – My Hobby */}
+        <div className="section-snap section-gallery shrink-0 relative w-full">
+          <HobbySection />
+        </div>
+
+        {/* Section 7 – Skills */}
         <div className="section-snap section-skills shrink-0 relative w-full">
           <Skills />
         </div>
 
-        {/* Section 5 – Contact */}
+        {/* Section 8 – Contact */}
         <div className="section-snap section-contact shrink-0 relative w-full">
           <Contact />
         </div>
@@ -81,3 +96,17 @@ export default function App() {
     </>
   );
 }
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Portfolio />} />
+      <Route path="/jarvis" element={
+        <Suspense fallback={null}>
+          <JarvisPage />
+        </Suspense>
+      } />
+    </Routes>
+  );
+}
+
